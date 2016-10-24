@@ -1,0 +1,51 @@
+@import "../styles/_palette";
+.youtube-video-nav {
+  position: relative;
+  margin-bottom: 10px;
+  a.title_youtube_channel {
+    font-size: 16px;
+    display: inline-block;
+    color: #707070;
+    text-decoration: none;
+    &.block-style {
+      padding: 5px 7px;
+      margin: 0 10px 0 0;
+    }
+    &:hover {
+      color: #cfcfcf;
+      background-color: $border-color;
+      border-color: #000;
+      cursor: pointer;
+    }
+  }
+  .title_youtube_video {
+    text-shadow: 3px 4px 2px #000000;
+  }
+  .btn-grp {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  button.prev,
+  button.next {
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    padding: 5px;
+    border-radius: 5px;
+    color: #707070;
+    z-index: 999;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: #cfcfcf;
+      background-color: $border-color;
+    }
+  }
+  button.prev {
+    margin-right: 5px;
+  }
+  button.next {
+    float: right;
+  }
+}

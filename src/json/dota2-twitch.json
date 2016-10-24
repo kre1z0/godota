@@ -1,0 +1,489 @@
+[
+  {
+    "id": "funn1k",
+    "nickname": "Funn1k",
+    "country": "Ukraine"
+  },
+  {
+    "id": "dreamleague",
+    "nickname": "DreamLeague #1",
+    "country": "United-Kingdom"
+  },
+  {
+    "id": "dendi",
+    "nickname": "Dendi",
+    "country": "Ukraine"
+  },
+  {
+    "id": "canceldota",
+    "nickname": "canceL",
+    "country": "Romania"
+  },
+  {
+    "id": "alohadancetv",
+    "nickname": "Alohadance",
+    "country": "Ukraine"
+  },
+  {
+    "id": "ruhub_dotapit",
+    "nickname": "RuHub Dota Pit",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder1",
+    "nickname": "SLTV1",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder2",
+    "nickname": "SLTV2",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder3",
+    "nickname": "SLTV3",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder4",
+    "nickname": "SLTV4",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder5",
+    "nickname": "SLTV5",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder6",
+    "nickname": "SLTV6",
+    "country": "Russia"
+  },
+  {
+    "id": "starladder7",
+    "nickname": "SLTV7",
+    "country": "Russia"
+  },
+  {
+    "id": "wagamamatv",
+    "nickname": "Wagamama",
+    "country": "Sweden"
+  },
+  {
+    "id": "rxnexus",
+    "nickname": "Nexus",
+    "country": "Russia"
+  },
+  {
+    "id": "tuckerdota",
+    "nickname": "Tucker",
+    "country": "European-Union"
+  },
+  {
+    "id": "pyrionflax",
+    "nickname": "Pyrionflax",
+    "country": "United-Kingdom"
+  },
+  {
+    "id": "draskyl",
+    "nickname": "Draskyl",
+    "country": "United-States"
+  },
+  {
+    "id": "merlinidota",
+    "nickname": "Merlini",
+    "country": "United-States"
+  },
+  {
+    "id": "moonmeander",
+    "nickname": "Moonmeander",
+    "country": "Canada"
+  },
+  {
+    "id": "a1taoda",
+    "nickname": "A1taOda",
+    "country": "Ukraine"
+  },
+  {
+    "id": "versuta",
+    "nickname": "Versuta",
+    "country": "Russia"
+  },
+  {
+    "id": "admiralbulldog",
+    "nickname": "AdmiralBulldog",
+    "country": "Sweden"
+  },
+  {
+    "id": "eternalenvyy",
+    "nickname": "EternalEnvy",
+    "country": "Canada"
+  },
+  {
+    "id": "sing_sing",
+    "nickname": "SingSing",
+    "country": "Netherlands"
+  },
+  {
+    "id": "esl_dota2",
+    "nickname": "ESL_Dota2",
+    "country": "United-Kingdom"
+  },
+  {
+    "id": "bolodota",
+    "nickname": "BoloDota",
+    "country": "Brazil"
+  },
+  {
+    "id": "zai",
+    "nickname": "Zai",
+    "country": "Sweden"
+  },
+  {
+    "id": "synderen",
+    "nickname": "Synderen",
+    "country": "Denmark"
+  },
+  {
+    "id": "arteezy",
+    "nickname": "Arteezy",
+    "country": "Canada"
+  },
+  {
+    "id": "illidanstrdoto",
+    "nickname": "Illidan",
+    "country": "Russia"
+  },
+  {
+    "id": "s4",
+    "nickname": "s4",
+    "country": "Sweden"
+  },
+  {
+    "id": "adekvat",
+    "nickname": "Adekvat",
+    "country": "Russia"
+  },
+  {
+    "id": "vityshka",
+    "nickname": "WickedSick",
+    "country": "Ukraine"
+  },
+  {
+    "id": "w33haa",
+    "nickname": "W33",
+    "country": "Romania"
+  },
+  {
+    "id": "dk_phobos",
+    "nickname": "DkPhobos",
+    "country": "Ukraine"
+  },
+  {
+    "id": "chessie",
+    "nickname": "Chessie",
+    "country": "Sweden"
+  },
+  {
+    "id": "stray228",
+    "nickname": "Stray228",
+    "country": "Russia"
+  },
+  {
+    "id": "evilarthas",
+    "nickname": "EvilArthas",
+    "country": "Ukraine"
+  },
+  {
+    "id": "comewithme",
+    "nickname": "ComeWithMe",
+    "country": "Romania"
+  },
+  {
+    "id": "ns_vp",
+    "nickname": "NS",
+    "country": "Russia"
+  },
+  {
+    "id": "esportal",
+    "nickname": "Esportal",
+    "country": "United-States"
+  },
+  {
+    "id": "d2net",
+    "nickname": "Dota2.Net",
+    "country": "Russia"
+  },
+  {
+    "id": "thegdstudio",
+    "nickname": "GDStudio",
+    "country": "Sweden"
+  },
+  {
+    "id": "dubastv",
+    "nickname": "Dubas",
+    "country": "Ukraine"
+  },
+  {
+    "id": "sheevergaming",
+    "nickname": "Sheever",
+    "country": "Netherlands"
+  },
+  {
+    "id": "y0nd",
+    "nickname": "y0nd",
+    "country": "Russia"
+  },
+  {
+    "id": "arise_3012",
+    "nickname": "Ar1se",
+    "country": "Romania"
+  },
+  {
+    "id": "2gd",
+    "nickname": "2GD",
+    "country": "United-Kingdom"
+  },
+  {
+    "id": "purgegamers",
+    "nickname": "Purge",
+    "country": "United-States"
+  },
+  {
+    "id": "gaminglive_dota2",
+    "nickname": "FroggedTV",
+    "country": "France"
+  },
+  {
+    "id": "halejujah",
+    "nickname": "Halejujah",
+    "country": "Russia"
+  },
+  {
+    "id": "xakoh",
+    "nickname": "XaKoH",
+    "country": "Russia"
+  },
+  {
+    "id": "ubah",
+    "nickname": "Ubah",
+    "country": "Russia"
+  },
+  {
+    "id": "slahserdota",
+    "nickname": "Slahser",
+    "country": "Denmark"
+  },
+  {
+    "id": "stormstudio_dota2_ru",
+    "nickname": "Storm Studio",
+    "country": "Russia"
+  },
+  {
+    "id": "dotapit",
+    "nickname": "Dotapit",
+    "country": "United-States"
+  },
+  {
+    "id": "sumaildoto",
+    "nickname": "SumaiL",
+    "country": "United-States"
+  },
+  {
+    "id": "godhunt",
+    "nickname": "Godhunt",
+    "country": "Ukraine"
+  },
+  {
+    "id": "mineskitv",
+    "nickname": "Mineski TV",
+    "country": "Philippines"
+  },
+  {
+    "id": "beyondthesummit",
+    "nickname": "BeyondTheSummitTV",
+    "country": "United-States"
+  },
+  {
+    "id": "beyondthesummit_ru",
+    "nickname": "BeyondTheSummitTV RU",
+    "country": "Russia"
+  },
+  {
+    "id": "dotascl",
+    "nickname": "DotaSCL",
+    "country": "Russia"
+  },
+  {
+    "id": "mob5tertv",
+    "nickname": "Mob5ter",
+    "country": "Russia"
+  },
+  {
+    "id": "undershockk",
+    "nickname": "Undershock",
+    "country": "Russia"
+  },
+  {
+    "id": "bananaslamjamma",
+    "nickname": "Bananaslamjamma",
+    "country": "United-States"
+  },
+  {
+    "id": "blitzdota",
+    "nickname": "Blitz",
+    "country": "United-States"
+  },
+  {
+    "id": "dotademon",
+    "nickname": "Demon",
+    "country": "United-States"
+  },
+  {
+    "id": "dreadztv",
+    "nickname": "Dread",
+    "country": "Russia"
+  },
+  {
+    "id": "tobiwan",
+    "nickname": "TobiWan",
+    "country": "Australia"
+  },
+  {
+    "id": "matumbaman",
+    "nickname": "Matumbaman",
+    "country": "Finland"
+  },
+  {
+    "id": "ixmike88",
+    "nickname": "ixmike88",
+    "country": "United-States"
+  },
+  {
+    "id": "inmateoo",
+    "nickname": "Inmateoo",
+    "country": "Russia"
+  },
+  {
+    "id": "qojqva",
+    "nickname": "qojqva",
+    "country": "Germany"
+  },
+  {
+    "id": "bzzisperfect",
+    "nickname": "Bzzisperfect",
+    "country": "Russia"
+  },
+  {
+    "id": "sunlightdota2",
+    "nickname": "Sunlight",
+    "country": "Belarus"
+  },
+  {
+    "id": "heflatv1",
+    "nickname": "HeflaTV",
+    "country": "United-States"
+  },
+  {
+    "id": "followjotm",
+    "nickname": "Jotm",
+    "country": "Russia"
+  },
+  {
+    "id": "1437",
+    "nickname": "1437",
+    "country": "United-States"
+  },
+  {
+    "id": "sneyking",
+    "nickname": "Sneyking",
+    "country": "United-States"
+  },
+  {
+    "id": "odpixel",
+    "nickname": "ODPixel",
+    "country": "United-States"
+  },
+  {
+    "id": "era17",
+    "nickname": "Era",
+    "country": "Sweden"
+  },
+  {
+    "id": "shachlos",
+    "nickname": "Shachlo",
+    "country": "Russia"
+  },
+  {
+    "id": "d3xtr",
+    "nickname": "D3xtr",
+    "country": "Ukraine"
+  },
+  {
+    "id": "abfnggshka",
+    "nickname": "Fng",
+    "country": "Belarus"
+  },
+  {
+    "id": "attackerdota",
+    "nickname": "Attacker",
+    "country": "United-Arab-Emirates"
+  },
+  {
+    "id": "followkudes",
+    "nickname": "Kudes",
+    "country": "Russia"
+  },
+  {
+    "id": "lizzarddota2",
+    "nickname": "Lizzard",
+    "country": "Bosnia-and-Herzegovina"
+  },
+  {
+    "id": "siractionslacks",
+    "nickname": "SirActionSlacks",
+    "country": "United-States"
+  },
+  {
+    "id": "miracle_doto",
+    "nickname": "Miracle",
+    "country": "Jordan"
+  },
+  {
+    "id": "pgg",
+    "nickname": "PGG",
+    "country": "Russia"
+  },
+  {
+    "id": "sololineabuse",
+    "nickname": "Solo",
+    "country": "Russia"
+  },
+  {
+    "id": "esl_joindotared",
+    "nickname": "joinDOTA ESL",
+    "country": "United-Kingdom"
+  },
+  {
+    "id": "ppd",
+    "nickname": "ppd",
+    "country": "United-States"
+  },
+  {
+    "id": "dota2ruhub",
+    "nickname": "Russian Hub",
+    "country": "Russia"
+  },
+  {
+    "id": "nemesis_tv",
+    "nickname": "Nemesis",
+    "country": "Ukraine"
+  },
+  {
+    "id": "last",
+    "nickname": "last",
+    "country": "last"
+  }
+]
+
+

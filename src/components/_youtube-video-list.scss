@@ -1,0 +1,80 @@
+@import "../styles/_palette";
+
+.youtube-video-list {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  .item {
+    width: calc(25% - 5px);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    &:nth-child(4n){
+      width: 25%;
+      margin-right: 0;
+    }
+    &:hover {
+      .block-style {
+        border: 1px solid $hover-text-color;
+      }
+      .youtube-title {
+        opacity: 0;
+      }
+      .youtube-date {
+        opacity: 0;
+      }
+    }
+    img {
+      vertical-align: middle;
+      width: 100%;
+      height: auto;
+    }
+    .youtube-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      font-size: 13px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 1.3em;
+      white-space: nowrap;
+      z-index: 1;
+      padding: 3px 10px;
+      background: $bg-color;
+      border-radius: 0 5px 0 5px;
+      transition: all 0.3s ease-in-out;
+    }
+    .youtube-date {
+      font-size: 13px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      padding: 3px 10px;
+      background: $bg-color;
+      border-radius: 0 5px 0 5px;
+      transition: all 0.3s ease-in-out;
+    }
+    .block-style {
+      cursor: pointer;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .active {
+      .block-style {
+        border: 1px solid $hover-text-color;
+        cursor: default;
+      }
+      .youtube-title {
+        opacity: 0;
+      }
+      .youtube-date {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+

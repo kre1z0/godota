@@ -1,0 +1,30 @@
+// Settings go here
+@import "palette";
+@import "progressbar";
+
+.header {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 13px;
+  &.block-style {
+    padding: 1px;
+  }
+  ul {
+    padding: 4px 0;
+    margin: 0;
+    list-style-type: none;
+    li {
+      display: inline-block;
+      a {
+        color: $text-color;
+        text-decoration: none;
+        padding: 0 15px;
+        &.active {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+

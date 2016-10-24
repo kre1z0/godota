@@ -1,0 +1,103 @@
+@import "../styles/_palette";
+
+.note {
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  background: $bg-color;
+  color: #888888;
+  line-height: 1.4em;
+  font-size: 14px;
+  width: calc(50% - 5px);
+  position: relative;
+  height: auto;
+  float: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 11px;
+  margin-bottom: 10px;
+  transition: box-shadow .3s;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.time {
+  font-size: 12px;
+  padding-bottom: 5px;
+  color: #707070;
+}
+
+.note:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 4px 4px rgba(0, 0, 0, 0.23);
+}
+
+.delete-note {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.note:hover .delete-note {
+  display: block;
+}
+
+.note-editor {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+  margin: 16px auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 1px 1px 50px rgba(0, 0, 0, 0.24);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.5s linear;
+  &.error {
+    box-shadow: inset 1px 1px 30px rgba(255, 0, 44, 0.4), inset 1px 1px 50px rgba(255, 0, 44, 0.2);
+  }
+}
+
+.textarea {
+  color: #cfcfcf;
+  width: 100%;
+  resize: none;
+  background-color: transparent;
+  margin: 5px;
+  font-size: 14px;
+  border: none;
+  font-weight: 300;
+}
+
+.textarea:focus {
+  outline: 0;
+}
+
+.add-button {
+  align-self: flex-end;
+  width: 100px;
+  color: #dcdcdc;
+  cursor: pointer;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #12280f;
+  margin: 5px 5px 0 0;
+  border-radius: 13px;
+  border: 1px solid $border-color;
+  background-color: $bg-color;
+  padding: 5px;
+}
+
+.add-button:hover {
+  background-color: #2f2f2f;
+}
+
+.add-button:active {
+  position: relative;
+  top: 1px;
+}
+
+.add-button:focus {
+  outline: 0;
+}
+
