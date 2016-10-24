@@ -5,13 +5,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = {
-  devtool: 'inline-source-map',
-  entry: './src/app.js',
+  devtool: 'eval',
+  entry: [
+    'babel-polyfill',
+    './src/app'
+  ],
+  watch: true,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './bundle.js'
   },
-  context: __dirname,
   devServer: {
     contentBase: './dist',
     hot: true,
@@ -21,22 +24,24 @@ const config = {
     clientLogLevel: 'info',
     stats: { colors: true }
   },
-  watch: true,
   module: {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'react-hot!babel-loader',
-        exclude: /(node_modules|bower_components)/
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
+          plugins: ['transform-decorators-legacy'],
+          compact: false
+        }
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'autoprefixer-loader')
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style', 'css!sass!autoprefixer-loader?browsers=last 2 versions')
+        loader: 'style-loader!css-loader!sass'
       },
       {
         test: /\.json$/,
@@ -64,8 +69,8 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('./main.css'),
     new HtmlWebpackPlugin({
       files: {
         'css': ['main.css'],
@@ -75,10 +80,7 @@ const config = {
       hash: false,
       favicon: './src/static/favicon.ico',
       filename: './index.html',
-      inject: 'body',
-      minify: {
-        collapseWhitespace: true
-      }
+      inject: 'body'
     }),
     new CopyWebpackPlugin([
       { from: 'src/static' }

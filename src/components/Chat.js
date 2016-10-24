@@ -30,7 +30,6 @@ export default class Chat extends React.Component {
       minus: !this.state.minus
     })
   }
-
   render () {
     const button = classNames('block-style chat-button', { active: this.state.active })
     const font = classNames('fa', { 'fa-plus-square': this.state.plus, 'fa-minus-square': this.state.minus })

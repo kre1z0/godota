@@ -2,30 +2,62 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = {
-  entry: './src/app.js',
+const config = {
+  entry: [
+    'babel-polyfill',
+    './src/app'
+  ],
   output: {
-    path: path.resolve() + '/dist/',
-    publicPath: '/',
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: './bundle.js'
   },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      comments: false,
+      compress: {
+        sequences     : true,
+        booleans      : true,
+        loops         : true,
+        unused      : true,
+        warnings    : false,
+        drop_console: true,
+        unsafe      : true
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new ExtractTextPlugin('./style.css', { allChunks: true }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+      async: true
+    }),
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/)
+  ],
   module: {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'react-hot!babel-loader',
-        exclude: [/node_modules/]
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'stage-0'],
+          plugins: ['transform-decorators-legacy']
+        }
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader',
-        exclude: [/node_modules/]
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'autoprefixer-loader')
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader!sass',
-        exclude: [/node_modules/]
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader', 'autoprefixer-loader')
       },
       {
         test: /\.json$/,
@@ -61,7 +93,7 @@ module.exports = {
       template: './src/index.html',
       hash: false,
       favicon: './src/static/favicon.ico',
-      filename: '/index.html',
+      filename: './index.html',
       inject: 'body',
       minify: {
         collapseWhitespace: true
@@ -73,3 +105,4 @@ module.exports = {
   ]
 }
 
+module.exports = config
