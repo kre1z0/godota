@@ -1,6 +1,5 @@
 import React from 'react'
 import store from '../store/configureStore'
-import './_youtube-video-list.scss'
 import { connect } from 'react-redux'
 import moment from 'moment'
 

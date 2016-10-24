@@ -1,5 +1,4 @@
 import React from 'react'
-import './_youtube-list.scss'
 import store from '../store/configureStore'
 import { getChannelId } from '../actions/youtubeChannelId'
 import { connect } from 'react-redux'

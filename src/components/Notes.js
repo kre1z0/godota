@@ -1,4 +1,3 @@
-import './_notes.scss'
 import Masonry from 'masonry-layout'
 import React from 'react'
 import moment from 'moment'

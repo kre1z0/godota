@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './store/configureStore'
-import './styles/core.scss'
 import App from './containers/header'
 import Home from './views/Home'
 import Start from './views/Start'
+import './styles/main.scss'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 ReactDOM.render(

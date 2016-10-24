@@ -10,7 +10,7 @@ const config = {
     './src/app'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: './bundle.js'
   },
   plugins: [
@@ -34,11 +34,24 @@ const config = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new ExtractTextPlugin('./style.css', { allChunks: true }),
+    new ExtractTextPlugin('./main.css'),
     new webpack.optimize.CommonsChunkPlugin({
       children: true,
       async: true
     }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      hash: false,
+      favicon: './src/static/favicon.ico',
+      filename: './index.html',
+      inject: 'body',
+      minify: {
+        collapseWhitespace: true
+      }
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/static' }
+    ]),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/)
   ],
   module: {
@@ -53,11 +66,11 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'autoprefixer-loader')
+        loader: ExtractTextPlugin.extract('css', 'css-loader')
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader', 'autoprefixer-loader')
+        loader: ExtractTextPlugin.extract('style', 'css', 'sass')
       },
       {
         test: /\.json$/,
@@ -83,26 +96,7 @@ const config = {
       { test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
       { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      files: {
-        'css': ['main.css'],
-        'js': ['bundle.js']
-      },
-      template: './src/index.html',
-      hash: false,
-      favicon: './src/static/favicon.ico',
-      filename: './index.html',
-      inject: 'body',
-      minify: {
-        collapseWhitespace: true
-      }
-    }),
-    new CopyWebpackPlugin([
-      { from: 'src/static' }
-    ])
-  ]
+  }
 }
 
 module.exports = config

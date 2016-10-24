@@ -1,5 +1,4 @@
 import React from 'react'
-import './_streams.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import dota2twitch from '../json/dota2-twitch.json'

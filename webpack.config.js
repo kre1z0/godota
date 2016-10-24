@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const config = {
   devtool: 'eval',
@@ -72,10 +71,6 @@ const config = {
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      files: {
-        'css': ['main.css'],
-        'js': ['bundle.js']
-      },
       template: './src/index.html',
       hash: false,
       favicon: './src/static/favicon.ico',

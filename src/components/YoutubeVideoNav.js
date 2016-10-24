@@ -1,7 +1,6 @@
 import React from 'react'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
-import './_youtubeVideoNav.scss'
 import { getNextVideos } from '../actions/getNextVideos'
 
 @connect((store) => {
