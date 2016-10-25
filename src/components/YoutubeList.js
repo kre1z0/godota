@@ -1,5 +1,5 @@
 import React from 'react'
-import store from '../store/configureStore'
+// import store from '../store/configureStore'
 import { getChannelId } from '../actions/youtubeChannelId'
 import { connect } from 'react-redux'
 // import dota2youtube from '../json/dota2-youtube.json'

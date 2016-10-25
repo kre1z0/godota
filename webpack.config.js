@@ -4,12 +4,13 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const config = {
-  devtool: 'eval',
+  devtool: 'source-map',
   entry: [
     'babel-polyfill',
     './src/app'
   ],
   watch: true,
+  progress: true,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './bundle.js'
