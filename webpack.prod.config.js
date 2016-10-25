@@ -4,14 +4,15 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+
 const config = {
   entry: [
     'babel-polyfill',
-    './src/app'
+    './src/app.js'
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: './bundle.js'
+    path: path.resolve(path.join(), 'dist'),
+    filename: 'bundle.js'
   },
   progress: true,
   resolve: {

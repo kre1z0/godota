@@ -7,7 +7,8 @@
     "lint": "eslint ./src",
     "clean": "rimraf dist && mkdir dist",
     "dev": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --colors"
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --colors && node server",
+    "server": "node server"
   },
   "repository": {
     "type": "git",
