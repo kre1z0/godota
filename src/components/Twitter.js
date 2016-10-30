@@ -1,16 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import './twitter.scss'
 import ReactDOM from 'react-dom'
-import { connect } from 'react-redux'
 // react-custom-scrollbars docs
 // https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs
 import { Scrollbars } from 'react-custom-scrollbars'
-
-@connect((store) => {
-  return {
-    twitterGame: store.ChangeGame.twitterGame
-  }
-})
 
 class Twitter extends Component {
   constructor (props) {
@@ -58,20 +51,16 @@ class Twitter extends Component {
     twittertimeline.parentNode.appendChild(twitterscript)
   }
 
-  static propTypes = {
-    twitterGame: PropTypes.string
-  }
-
   render () {
     return (
       <Scrollbars className='scroll_bar'
-        key={this.props.twitterGame} style={{ height: 500 }}
+        style={{ height: 600 }}
         renderTrackVertical={props => <div {...props} className='track-vertical' />}
         renderThumbVertical={props => <div {...props} className='thumb-vertical' />}
         renderView={props => <div {...props} className='view' />} >
         <div className='scroll_bar_wrap'>
           <a
-            href={this.props.twitterGame}
+            href='https://twitter.com/Kreiz0/lists/dota'
             data-link-color='#239DFF'
             data-theme='dark'
             data-border-color='#444444'

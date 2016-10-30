@@ -1,13 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import './youtubeList.scss'
 import { getChannelId } from '../actions/youtubeChannelId'
-import { connect } from 'react-redux'
+import dota2 from '../json/youtube.json'
 
-@connect((store) => {
-  return {
-    youtubeGame: store.ChangeGame.youtubeGame
-  }
-})
 export default class YoutubeList extends Component {
   constructor (props) {
     super(props)
@@ -15,7 +10,6 @@ export default class YoutubeList extends Component {
       selectedIndex: []
     }
   }
-
   handleClick (item) {
     this.setState({ selectedIndex: item.id || item.youtubeId })
 
@@ -24,11 +18,8 @@ export default class YoutubeList extends Component {
 
     getChannelId(channelName, channelId)
   }
-  static propTypes = {
-    youtubeGame: PropTypes.array
-  }
   render () {
-    let youtube = this.props.youtubeGame
+    let youtube = dota2
     if (youtube) {
       youtube = youtube.map((item) => {
         return (
@@ -47,7 +38,6 @@ export default class YoutubeList extends Component {
           { youtube }
         </ul>
       </div>
-
     )
   }
 }

@@ -11,6 +11,11 @@ const Twitch = (state = {
         display: action.display,
         active: action.active
       }
+    case 'LOAD_TWITCH':
+      return {
+        ...state,
+        twitch: action.twitch
+      }
     case 'LOAD_IMG':
       return {
         ...state,

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 const config = {
   devtool: 'eval',
@@ -34,11 +35,11 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader'
+        loader: 'style-loader!css-loader!postcss-loader'
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!autoprefixer-loader!sass'
+        loader: 'style-loader!css-loader!postcss-loader!sass'
       },
       {
         test: /\.json$/,
@@ -65,6 +66,7 @@ const config = {
       { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
     ]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),

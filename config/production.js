@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 const config = {
   entry: [
@@ -35,11 +36,11 @@ const config = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!resolve-url!sass-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url!sass-loader')
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!resolve-url')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url')
       },
       {
         test: /\.json$/,
@@ -66,6 +67,7 @@ const config = {
       { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
     ]
   },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
     new ExtractTextPlugin('main.css', {
       allChunks: true

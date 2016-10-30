@@ -2,14 +2,14 @@ import './twitch.scss'
 import React, { Component, PropTypes } from 'react'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
-import dota2twitch from '../json/dota2-twitch.json'
+import dota2 from '../json/twitch.json'
 import { fetchTwitch } from '../actions/fetchTwitch'
 import { resizeTwitchIframe, resizeTwitchImage } from '../actions/resizeFunction'
 
 @connect((store) => {
   return {
     active: store.Twitch.active,
-    twitchGame: store.ChangeGame.twitchGame
+    twitch: store.Twitch.twitch
   }
 })
 export default class Streams extends Component {
@@ -20,14 +20,15 @@ export default class Streams extends Component {
       selectedIndex: []
     }
   }
-
   componentWillMount () {
-    fetchTwitch(dota2twitch)
+    fetchTwitch(dota2)
     window.removeEventListener('resize', this.handleResize)
   }
   componentDidMount () {
+    setInterval(function () {
+      fetchTwitch(dota2)
+    }, 60000)
     window.addEventListener('resize', this.handleResize)
-
     this.handleResize()
   }
   handleResize () {
@@ -71,17 +72,13 @@ export default class Streams extends Component {
     )
   }
   static propTypes = {
-    twitchGame: PropTypes.array,
+    twitch: PropTypes.array,
     active: PropTypes.string
   }
   render () {
-    // setInterval(function() {
-    //   console.log(this.props.twitchGame);
-    // }, 3000);
-
     let twitches
-    if (this.props.twitchGame) {
-      twitches = this.props.twitchGame.map((item) => {
+    if (this.props.twitch) {
+      twitches = this.props.twitch.map((item) => {
         return (
           <li onClick={() => this.handleClick(item)}
             onMouseEnter={() => this.onMouseEnterHandler(item)}
