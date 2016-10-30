@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import './video.scss'
 import { connect } from 'react-redux'
 
 @connect((store) => {
@@ -11,7 +12,6 @@ import { connect } from 'react-redux'
     display: store.Twitch.display
   }
 })
-
 class Video extends Component {
   static propTypes = {
     img: PropTypes.string,

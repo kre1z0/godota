@@ -1,34 +1,4 @@
-$border-color: #444;
-$hover-text-color: #cfcfcf;
-$bg-color: #272727;
-$text-color: #fff;
-
-.header {
-  width: 100%;
-  margin-top: 10px;
-  font-size: 13px;
-  &.block-style {
-    padding: 1px;
-  }
-  ul {
-    padding: 4px 0;
-    margin: 0;
-    list-style-type: none;
-    li {
-      display: inline-block;
-      a {
-        color: $text-color;
-        text-decoration: none;
-        padding: 0 15px;
-        &.active {
-          color: red;
-        }
-      }
-    }
-  }
-}
-
-
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -40,15 +10,31 @@ $text-color: #fff;
   clear: both;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $text-color-gray;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: $bg-color;
+}
+
 body {
   color: $text-color;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: url("../static/images/background.jpg");
 }
+
 .container {
   min-width: 1365px;
   padding: 0 10px;
 }
+
 .block-style {
   margin-bottom: 10px;
   background-color: $bg-color;
@@ -56,6 +42,7 @@ body {
   border: 1px solid $border-color;
   padding: 5px;
 }
+
 .home {
   display: flex;
   flex-wrap: wrap;
@@ -69,63 +56,8 @@ body {
   .center_side {
     width: 56%;
     padding: 0 10px;
-    .video-block {
-      position: relative;
-      background: url("https://www.iguides.ru/upload/iblock/151/151e27229119929b2989d0571a1d5b15.jpg");
-      background-size: cover;
-      .twitch-date {
-        position: absolute;
-        font-size: 15px;
-        left: 0;
-        top: 0;
-        z-index: 1;
-        padding: 3px 10px;
-        background: $bg-color;
-        border-radius: 0 0 5px 0;
-      }
-      .video-img {
-        position: absolute;
-        top: 5px;
-        left: 5px;
-      }
-      .videoFrame {
-        width: 100%;
-        vertical-align: middle;
-      }
-    }
   }
   .right_side {
     width: 26%;
-    .chat-button {
-      color: #707070;
-      font-size: 15px;
-      cursor: pointer;
-      user-select: none;
-      text-align: center;
-      i {
-        padding-left: 7px;
-      }
-      &:before {
-        content: 'Show Chat';
-      }
-      &.active {
-        &:before {
-          content: 'Hide Chat';
-        }
-      }
-      &:hover {
-        color: $hover-text-color;
-      }
-    }
-    .chat-block {
-      display: none;
-      &.active {
-        display: block;
-      }
-      .chatFrame {
-        width: 100%;
-        vertical-align: middle;
-      }
-    }
   }
 }

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import './twitter.scss'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-
-// this component have special method of loader
+// react-custom-scrollbars docs
+// https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs
+import { Scrollbars } from 'react-custom-scrollbars'
 
 @connect((store) => {
   return {
@@ -10,12 +12,13 @@ import { connect } from 'react-redux'
   }
 })
 
-export default class Twitter extends React.Component {
+class Twitter extends Component {
   constructor (props) {
     super(props)
     this.state = ({ initialized: false, key: 0 })
     this.makeTwitter = ::this.makeTwitter
   }
+
 // ======= start section mounting {
   componentDidMount () {
     if (this.state.initialized) {
@@ -39,11 +42,13 @@ export default class Twitter extends React.Component {
   componentDidUpdate () {
     this.makeTwitter()
   }
+
   // ======= end section mounting }
 
   initialized () {
     this.setState({ initialized: true })
   }
+
   makeTwitter () {
     const twittertimeline = ReactDOM.findDOMNode(this.refs.twittertimeline)
     const twitterscript = document.createElement('script')
@@ -53,21 +58,32 @@ export default class Twitter extends React.Component {
     twittertimeline.parentNode.appendChild(twitterscript)
   }
 
+  static propTypes = {
+    twitterGame: PropTypes.string
+  }
+
   render () {
     return (
-      <div key={this.props.twitterGame}>
-        <a
-          href={this.props.twitterGame}
-          data-link-color='#239DFF'
-          data-theme='dark'
-          data-border-color='#444444'
-          ref='twittertimeline'
-          className='twitter-timeline'
-          data-chrome='nofooter transparent noheader'
-          data-height='1300'
-        />
-      </div>
+      <Scrollbars className='scroll_bar'
+        key={this.props.twitterGame} style={{ height: 500 }}
+        renderTrackVertical={props => <div {...props} className='track-vertical' />}
+        renderThumbVertical={props => <div {...props} className='thumb-vertical' />}
+        renderView={props => <div {...props} className='view' />} >
+        <div className='scroll_bar_wrap'>
+          <a
+            href={this.props.twitterGame}
+            data-link-color='#239DFF'
+            data-theme='dark'
+            data-border-color='#444444'
+            ref='twittertimeline'
+            className='twitter-timeline'
+            data-chrome='nofooter transparent noborders noheader'
+          />
+        </div>
+      </Scrollbars>
     )
   }
 }
+
+export default Twitter
 

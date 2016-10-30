@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import './youtubeNav.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import { getNextVideos } from '../actions/getNextVideos'
@@ -14,7 +15,12 @@ import { getNextVideos } from '../actions/getNextVideos'
     videoTitle: store.Youtube.videoTitle
   }
 })
-export default class YoutubeVideoNav extends React.Component {
+class YoutubeVideoNav extends Component {
+  constructor (props) {
+    super(props)
+    this.ClickPrev = ::this.ClickPrev
+    this.ClickNext = ::this.ClickNext
+  }
   ClickPrev () {
     if (this.props.prevPageToken) {
       store.dispatch(
@@ -35,7 +41,15 @@ export default class YoutubeVideoNav extends React.Component {
       )
     }
   }
-
+  static propTypes = {
+    prevPageToken: PropTypes.string,
+    nextPageToken: PropTypes.string,
+    videoTitle: PropTypes.string,
+    title: PropTypes.string,
+    channelHref: PropTypes.string,
+    pid: PropTypes.string,
+    vidResults: PropTypes.number
+  }
   render () {
     if (this.props.prevPageToken && this.props.nextPageToken) {
       return (
@@ -44,10 +58,10 @@ export default class YoutubeVideoNav extends React.Component {
             className='title_youtube_channel block-style'>{this.props.title}</a>
           <span className='title_youtube_video'>{this.props.videoTitle}</span>
           <div className='btn-grp'>
-            <button className='next' onClick={::this.ClickNext}>
+            <button className='next' onClick={this.ClickNext}>
               <i className='fa fa-arrow-right' aria-hidden='true' />
             </button>
-            <button className='prev' onClick={::this.ClickPrev}>
+            <button className='prev' onClick={this.ClickPrev}>
               <i className='fa fa-arrow-left' aria-hidden='true' />
             </button>
           </div>
@@ -61,7 +75,7 @@ export default class YoutubeVideoNav extends React.Component {
               className='title_youtube_channel block-style'>{this.props.title}</a>
             <span className='title_youtube_video'>{this.props.videoTitle}</span>
             <div className='btn-grp'>
-              <button className='next' onClick={::this.ClickNext}>
+              <button className='next' onClick={this.ClickNext}>
                 <i className='fa fa-arrow-right' aria-hidden='true' />
               </button>
             </div>
@@ -74,3 +88,5 @@ export default class YoutubeVideoNav extends React.Component {
     )
   }
 }
+
+export default YoutubeVideoNav

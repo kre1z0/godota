@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import './youtubeVideo.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import moment from 'moment'
@@ -9,7 +10,7 @@ import moment from 'moment'
     active: store.Youtube.active
   }
 })
-export default class Streams extends React.Component {
+export default class Streams extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -18,10 +19,14 @@ export default class Streams extends React.Component {
   }
 
   static propTypes = {
-    video: React.PropTypes.array
-  };
+    video: PropTypes.array,
+    active: PropTypes.string
+  }
 
   handleClick (item) {
+    store.subscribe(() =>
+      console.log(store.getState())
+    )
     const videoId = item.id.videoId
     const title = item.snippet.title
     this.setState({ selectedIndex: videoId })
@@ -40,8 +45,7 @@ export default class Streams extends React.Component {
       {
         type: 'LOAD_YOUTUBE_VIDEO_TITLE',
         videoTitle: title
-      }
-    ]
+      }]
     )
   }
 
@@ -51,16 +55,15 @@ export default class Streams extends React.Component {
       video = this.props.video.map((item) => {
         const dateTime = item.snippet.publishedAt
         const formattedDT = moment(dateTime).startOf('hour').fromNow()
-
         return (
           <div className='item'
-            onClick={this.handleClick.bind(this, item)}
-            key={item.id.videoId}>
-            <div className={(this.state.selectedIndex === item.id.videoId) && this.props.active}>
-              <div className='block-style'>
-                <span className='youtube-title'>{item.snippet.title}</span>
+            onClick={() => this.handleClick(item)}
+            key={item.id.videoId} >
+            <div className={(this.state.selectedIndex === item.id.videoId) && this.props.active} >
+              <div className='block-style' >
+                <span className='youtube-title' >{item.snippet.title}</span>
                 <img src={item.snippet.thumbnails.medium.url} />
-                <span className='youtube-date'>{formattedDT}</span>
+                <span className='youtube-date' >{formattedDT}</span>
               </div>
             </div>
           </div>
@@ -68,7 +71,7 @@ export default class Streams extends React.Component {
       })
     }
     return (
-      <div className='youtube-video-list'>
+      <div className='youtube-video-list' >
         {video}
       </div>
     )

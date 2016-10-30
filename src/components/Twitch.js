@@ -1,4 +1,5 @@
-import React from 'react'
+import './twitch.scss'
+import React, { Component, PropTypes } from 'react'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import dota2twitch from '../json/dota2-twitch.json'
@@ -11,7 +12,7 @@ import { resizeTwitchIframe, resizeTwitchImage } from '../actions/resizeFunction
     twitchGame: store.ChangeGame.twitchGame
   }
 })
-export default class Streams extends React.Component {
+export default class Streams extends Component {
   constructor (props) {
     super(props)
     this.handleResize = ::this.handleResize
@@ -22,7 +23,7 @@ export default class Streams extends React.Component {
 
   componentWillMount () {
     fetchTwitch(dota2twitch)
-    window.removeEventListener('resize', ::this.handleResize)
+    window.removeEventListener('resize', this.handleResize)
   }
   componentDidMount () {
     window.addEventListener('resize', this.handleResize)
@@ -38,12 +39,11 @@ export default class Streams extends React.Component {
   }
   onMouseLeaveHandler () {
     const action = {
-      type: 'HIDE_IMG',
+      type: 'LOAD_IMG',
       display: 'none'
     }
     store.dispatch(action)
   }
-
   handleClick (item) {
     resizeTwitchIframe()
     this.setState({ selectedIndex: item.channel.id })
@@ -70,7 +70,10 @@ export default class Streams extends React.Component {
     ]
     )
   }
-
+  static propTypes = {
+    twitchGame: PropTypes.array,
+    active: PropTypes.string
+  }
   render () {
     // setInterval(function() {
     //   console.log(this.props.twitchGame);
@@ -80,9 +83,9 @@ export default class Streams extends React.Component {
     if (this.props.twitchGame) {
       twitches = this.props.twitchGame.map((item) => {
         return (
-          <li onClick={this.handleClick.bind(this, item)}
-            onMouseEnter={this.onMouseEnterHandler.bind(this, item)}
-            onMouseLeave={::this.onMouseLeaveHandler}
+          <li onClick={() => this.handleClick(item)}
+            onMouseEnter={() => this.onMouseEnterHandler(item)}
+            onMouseLeave={this.onMouseLeaveHandler}
             className={(this.state.selectedIndex === item.channel.id) && this.props.active}
             title={item.channel.status} key={item.channel.id}>
             <img src={'./images/flag_country/' + item.channel.country + '.png'}

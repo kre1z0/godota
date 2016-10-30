@@ -4,7 +4,6 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-
 const config = {
   entry: [
     'babel-polyfill',
@@ -30,17 +29,17 @@ const config = {
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['transform-decorators-legacy'],
+          plugins: ['transform-decorators-legacy', 'transform-class-properties'],
           compact: false
         }
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url!sass-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!resolve-url!sass-loader')
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!resolve-url')
       },
       {
         test: /\.json$/,
@@ -106,3 +105,17 @@ const config = {
 }
 
 module.exports = config
+
+const express = require('express')
+const app = express()
+const port = 1988
+
+app.use(express.static(path.join() + '/dist'))
+
+app.listen(port, '0.0.0.0', function onStart (err) {
+  if (err) {
+    console.log(err)
+  }
+  console.info('production server ==> Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port)
+})
+

@@ -4,16 +4,15 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const config = {
-  devtool: 'source-map',
+  devtool: 'eval',
   entry: [
-    'babel-polyfill',
     './src/app.js'
   ],
   watch: true,
-  progress: true,
   output: {
-    path: path.resolve(path.join() , 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(path.join(), 'dist'),
+    filename: 'bundle.js',
+    pathinfo: true
   },
   devServer: {
     contentBase: './dist',
@@ -30,18 +29,16 @@ const config = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
-          plugins: ['transform-decorators-legacy'],
-          compact: false
+          compact: true
         }
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: 'style-loader!css-loader!autoprefixer-loader'
       },
       {
         test: /\.scss$/,
-        loader: 'style-loader!css-loader!sass'
+        loader: 'style-loader!css-loader!autoprefixer-loader!sass'
       },
       {
         test: /\.json$/,

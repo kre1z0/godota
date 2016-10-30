@@ -1,21 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import store from './store/configureStore'
-import App from './containers/header'
-import Home from './views/Home'
-import Start from './views/Start'
+import { Provider } from 'react-redux'
+import CoreLayout from './layouts/CoreLayout.js'
 import './styles/main.scss'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import moment from 'moment'
+moment.locale('ru')
 
 ReactDOM.render(
   <Provider store={store} >
-    <Router history={browserHistory} >
-      <Route path='/' component={App} >
-        <IndexRoute component={Home} />
-        <Route path='/Start' component={Start} />
-      </Route>
-    </Router>
+    <CoreLayout />
   </Provider>,
   document.getElementById('root')
 )

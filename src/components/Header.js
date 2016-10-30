@@ -1,12 +1,10 @@
 import React from 'react'
+import './header.scss'
 import store from '../store/configureStore'
-import { Link } from 'react-router'
-import moment from 'moment'
 import csgoTwitch from '../json/cs-go-twitch.json'
 import csgoYoutube from '../json/cs-go-youtube.json'
 import dota2twitch from '../json/dota2-twitch.json'
 import dota2youtube from '../json/dota2-youtube.json'
-
 import { fetchTwitch } from '../actions/fetchTwitch'
 
 const Menu = [
@@ -23,23 +21,17 @@ const Menu = [
     youtubeJson: csgoYoutube,
     twitchJson: csgoTwitch,
     twitter: 'https://twitter.com/Kreiz0/lists/csgo'
-  },
-  {
-    to: '/Start',
-    name: 'Start'
   }
 ]
 
-export default class App extends React.Component {
+class Header extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       selectedIndex: 'DOTA2'
     }
   }
-  componentDidMount () {
-    moment.locale('ru')
-  }
+
   handleClick (item) {
     this.setState({ selectedIndex: item.name })
     if (item.twitchJson || item.youtubeJson) {
@@ -59,28 +51,26 @@ export default class App extends React.Component {
       ])
     }
   }
+
   render () {
     return (
-      <div className='container'>
-        <header className='header block-style'>
-          <ul>
-            {
-              Menu.map((item) => {
-                return (
-                  <li key={item.name}>
-                    <Link to={item.to} className={(this.state.selectedIndex === item.name) && 'active'}
-                      onClick={this.handleClick.bind(this, item)}>
-                      {item.name}
-                    </Link>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        </header>
-        {this.props.children}
-      </div>
+      <header className='header block-style' >
+        <ul>
+          {
+            Menu.map((item) => {
+              return (
+                <li key={item.name}
+                  className={(this.state.selectedIndex === item.name) && 'active'}
+                  onClick={() => this.handleClick(item)} >
+                  {item.name}
+                </li>
+              )
+            })
+          }
+        </ul>
+      </header>
     )
   }
 }
 
+export default Header

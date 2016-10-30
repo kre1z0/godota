@@ -1,0 +1,18 @@
+@import "../styles/variables";
+
+.scroll_bar {
+  .track-vertical {
+    width: 4px !important;
+    right: 3px;
+    bottom: 3px;
+    top: 3px;
+  }
+  .thumb-vertical {
+    background-color: $text-color-gray;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .scroll_bar_wrap {
+    height: 4444px;
+  }
+}

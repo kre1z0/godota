@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
+import './chat.scss'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 @connect((store) => {
   return {
@@ -8,7 +10,7 @@ import classNames from 'classnames'
   }
 })
 
-export default class Chat extends React.Component {
+export default class Chat extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -30,12 +32,13 @@ export default class Chat extends React.Component {
       minus: !this.state.minus
     })
   }
+
   render () {
     const button = classNames('block-style chat-button', { active: this.state.active })
     const font = classNames('fa', { 'fa-plus-square': this.state.plus, 'fa-minus-square': this.state.minus })
     const block = classNames('chat-block', { active: this.state.active })
     return (
-      <div>
+      <div className='twitch_chat' >
         <div className={button} onClick={this.handleClick} >
           <i className={font} />
         </div>

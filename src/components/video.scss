@@ -1,0 +1,27 @@
+@import "../styles/variables";
+
+.video-block {
+  position: relative;
+  background: url("../static/images/twitch.jpg");
+  background-size: cover;
+  .twitch-date {
+    position: absolute;
+    font-size: 15px;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    padding: 3px 10px;
+    background: $bg-color;
+    border-radius: 0 0 5px 0;
+  }
+  .video-img {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  .videoFrame {
+    width: 100%;
+    vertical-align: middle;
+  }
+}
+

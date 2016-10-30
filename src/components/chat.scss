@@ -1,0 +1,36 @@
+@import "../styles/variables";
+.twitch_chat {
+  .chat-button {
+    color: $text-color-gray;
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    i {
+      padding-left: 7px;
+    }
+    &:before {
+      content: 'Show Chat';
+    }
+    &.active {
+      &:before {
+        content: 'Hide Chat';
+      }
+    }
+    &:hover {
+      color: $hover-text-color;
+    }
+  }
+  .chat-block {
+    display: none;
+    &.active {
+      display: block;
+    }
+    .chatFrame {
+      background: url("../static/images/kappa.jpg");
+      background-size: cover;
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+}

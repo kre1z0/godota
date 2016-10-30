@@ -1,20 +1,25 @@
+import React, { Component, PropTypes } from 'react'
+import './notes.scss'
 import Masonry from 'masonry-layout'
-import React from 'react'
 import moment from 'moment'
 import classNames from 'classnames'
 
-class Note extends React.Component {
+class Note extends Component {
+  static propTypes = {
+    children: PropTypes.array,
+    onDeconste: PropTypes.func
+  }
   render () {
     return (
-      <div className='note'>
-        <span className='delete-note' onClick={this.props.onDeconste}> × </span>
+      <div className='note' >
+        <span className='delete-note' onClick={this.props.onDeconste} > × </span>
         {this.props.children}
       </div>
     )
   }
 }
 
-class NoteEditor extends React.Component {
+class NoteEditor extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -22,6 +27,8 @@ class NoteEditor extends React.Component {
       placeholder: 'Enter your note here...',
       error: false
     }
+    this.handconstextChange = ::this.handconstextChange
+    this.handleNoteAdd = ::this.handleNoteAdd
   }
 
   handconstextChange (event) {
@@ -35,7 +42,7 @@ class NoteEditor extends React.Component {
   }
 
   handleNoteAdd () {
-    if (this.state.text.length == 0) {
+    if (this.state.text.length === 0) {
       this.setState({
         placeholder: 'your note is empty...',
         error: true
@@ -54,26 +61,28 @@ class NoteEditor extends React.Component {
       })
     }
   }
-
+  static propTypes = {
+    onNoteAdd: PropTypes.func
+  }
   render () {
     const error = this.state.error
     const e = classNames('note-editor', { error })
     return (
-      <div className={e}>
+      <div className={e} >
         <textarea
           placeholder={this.state.placeholder}
           rows={5}
           className='textarea'
           value={this.state.text}
-          onChange={::this.handconstextChange}
-                />
-        <button className='add-button' onClick={::this.handleNoteAdd}>Add</button>
+          onChange={this.handconstextChange}
+        />
+        <button className='add-button' onClick={this.handleNoteAdd} >Add</button>
       </div>
     )
   }
 }
 
-class NotesGrid extends React.Component {
+class NotesGrid extends Component {
 
   componentDidMount () {
     const grid = this.refs.grid
@@ -89,18 +98,21 @@ class NotesGrid extends React.Component {
       this.msnry.layout()
     }
   }
-
+  static propTypes = {
+    notes: PropTypes.array,
+    onNoteDeconste: PropTypes.func
+  }
   render () {
     const onNoteDeconste = this.props.onNoteDeconste
     return (
-      <div className='notes-grid' ref='grid'>
+      <div className='notes-grid' ref='grid' >
         {
           this.props.notes.map(function (note) {
             return (
               <Note
                 key={note.id}
-                onDeconste={onNoteDeconste.bind(null, note)}>
-                <div className='time'>
+                onDeconste={onNoteDeconste.bind(null, note)} >
+                <div className='time' >
                   {note.time}
                 </div>
                 {note.text}
@@ -113,7 +125,7 @@ class NotesGrid extends React.Component {
   }
 }
 
-export default class Notes extends React.Component {
+class Notes extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -153,10 +165,12 @@ export default class Notes extends React.Component {
 
   render () {
     return (
-      <div id='notes-app' className='notes-app'>
+      <div id='notes-app' className='notes-app' >
         <NoteEditor onNoteAdd={::this.handleNoteAdd} />
         <NotesGrid notes={this.state.notes} onNoteDeconste={::this.handleNoteDeconste} />
       </div>
     )
   }
 }
+
+export default Notes

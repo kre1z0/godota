@@ -1,24 +1,25 @@
+@import "../styles/variables";
+
 .youtube-video-nav {
   position: relative;
   margin-bottom: 10px;
   a.title_youtube_channel {
     font-size: 16px;
     display: inline-block;
-    color: #707070;
+    color: $text-color-gray;
     text-decoration: none;
     &.block-style {
       padding: 5px 7px;
       margin: 0 10px 0 0;
     }
     &:hover {
-      color: #cfcfcf;
-      background-color: $border-color;
-      border-color: #000;
+      color: $hover-text-color;
+      background: $hover-bg;
       cursor: pointer;
     }
   }
   .title_youtube_video {
-    text-shadow: 3px 4px 2px #000000;
+    text-shadow: 3px 4px 2px $hover-bg;
   }
   .btn-grp {
     position: absolute;
@@ -31,14 +32,14 @@
     border: 1px solid $border-color;
     padding: 5px;
     border-radius: 5px;
-    color: #707070;
+    color: $text-color-gray;
     z-index: 999;
     &:focus {
       outline: none;
     }
     &:hover {
-      color: #cfcfcf;
-      background-color: $border-color;
+      color: $hover-text-color;
+      background: $hover-bg;
     }
   }
   button.prev {

@@ -1,4 +1,3 @@
-
 const Twitch = (state = {
   display: 'none',
   active: ''
@@ -17,11 +16,6 @@ const Twitch = (state = {
         ...state,
         img: action.img,
         date: action.date,
-        display: action.display
-      }
-    case 'HIDE_IMG':
-      return {
-        ...state,
         display: action.display
       }
     case 'VIDEO_RESIZE':

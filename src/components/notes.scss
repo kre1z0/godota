@@ -1,8 +1,10 @@
+@import "../styles/variables";
+
 .note {
   border-radius: 5px;
   border: 1px solid $border-color;
   background: $bg-color;
-  color: #888888;
+  color: $text-color-gray;
   line-height: 1.4em;
   font-size: 14px;
   width: calc(50% - 5px);
@@ -20,7 +22,7 @@
 .time {
   font-size: 12px;
   padding-bottom: 5px;
-  color: #707070;
+  color: $text-color-gray;
 }
 
 .note:hover {
@@ -33,6 +35,9 @@
   right: 0;
   display: none;
   cursor: pointer;
+  &:hover {
+    color: $text-color;
+  }
 }
 
 .note:hover .delete-note {
@@ -56,7 +61,7 @@
 }
 
 .textarea {
-  color: #cfcfcf;
+  color: $hover-text-color;
   width: 100%;
   resize: none;
   background-color: transparent;
@@ -73,7 +78,7 @@
 .add-button {
   align-self: flex-end;
   width: 100px;
-  color: #dcdcdc;
+  color: $text-color-gray;
   cursor: pointer;
   font-size: 13px;
   text-transform: uppercase;
@@ -87,7 +92,8 @@
 }
 
 .add-button:hover {
-  background-color: #2f2f2f;
+  color: $text-color;
+  background-color: $hover-bg;
 }
 
 .add-button:active {
