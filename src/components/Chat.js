@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './chat.scss'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import { Scrollbars } from 'react-custom-scrollbars'
 
 @connect((store) => {
   return {

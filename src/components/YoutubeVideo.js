@@ -3,6 +3,8 @@ import './youtubeVideo.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import { getAllChannels } from '../actions/youtube'
+import { doVideo } from '../actions/youtube'
 
 @connect((store) => {
   return {
@@ -10,12 +12,16 @@ import moment from 'moment'
     active: store.Youtube.active
   }
 })
-export default class Streams extends Component {
+class YoutubeVideo extends Component {
   constructor (props) {
     super(props)
     this.state = {
       selectedIndex: []
     }
+  }
+
+  componentWillMount () {
+    doVideo()
   }
 
   static propTypes = {
@@ -24,9 +30,6 @@ export default class Streams extends Component {
   }
 
   handleClick (item) {
-    store.subscribe(() =>
-      console.log(store.getState())
-    )
     const videoId = item.id.videoId
     const title = item.snippet.title
     this.setState({ selectedIndex: videoId })
@@ -51,7 +54,8 @@ export default class Streams extends Component {
 
   render () {
     let video
-    if (this.props.video) {
+    if ( this.props.video) {
+      console.log('ggwp', this.props.video)
       video = this.props.video.map((item) => {
         const dateTime = item.snippet.publishedAt
         const formattedDT = moment(dateTime).startOf('hour').fromNow()
@@ -77,3 +81,5 @@ export default class Streams extends Component {
     )
   }
 }
+
+export default YoutubeVideo

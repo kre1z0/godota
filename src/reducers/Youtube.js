@@ -5,6 +5,11 @@ const Youtube = (state = {}, action) => {
         ...state,
         youtube: action.youtube
       }
+    case 'YOUTUBE_LIST_FAILED':
+      return {
+        ...state,
+        err: action.err
+      }
     case 'LOAD_YOUTUBE_VIDEO':
       return {
         ...state,
@@ -32,4 +37,3 @@ const Youtube = (state = {}, action) => {
 }
 
 export default Youtube
-

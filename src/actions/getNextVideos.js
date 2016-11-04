@@ -13,7 +13,7 @@ export function getNextVideos (nextPageToken, pid, vidResults) {
     return response.json()
   }).then((json) => {
 
-    const youtube_json = json.items
+    const items = json.items
     const next = json.nextPageToken
     const prev = json.prevPageToken
     const title = json.items[0].snippet.channelTitle
@@ -28,7 +28,7 @@ export function getNextVideos (nextPageToken, pid, vidResults) {
         title: title,
         channelHref: 'https://www.youtube.com/channel/' + channelHref,
         vidResults: vidResults,
-        video: youtube_json
+        video: items
       }
     )
   }).catch(function (ex) {

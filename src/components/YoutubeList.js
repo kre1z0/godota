@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import './youtubeList.scss'
-import { getChannelId } from '../actions/youtubeChannelId'
-import dota2 from '../json/youtube.json'
+import { connect } from 'react-redux'
+import { doList } from '../actions/youtube'
 
+@connect((store) => {
+  return {
+    youtube: store.Youtube.youtube,
+  }
+})
 export default class YoutubeList extends Component {
   constructor (props) {
     super(props)
@@ -10,18 +15,24 @@ export default class YoutubeList extends Component {
       selectedIndex: []
     }
   }
+  componentWillMount () {
+    doList()
+  }
   handleClick (item) {
     this.setState({ selectedIndex: item.id || item.youtubeId })
 
-    const channelName = item.id
-    const channelId = item.youtubeId
-
-    getChannelId(channelName, channelId)
+    // const channelName = item.id
+    // const channelId = item.youtubeId
+    // const oneChannel = true
+    //
+    // const args = [channelName, channelId, oneChannel]
+    // getYoutubeChannelsList(...args)
   }
+
   render () {
-    let youtube = dota2
-    if (youtube) {
-      youtube = youtube.map((item) => {
+    let youtube
+    if (this.props.youtube) {
+      youtube = this.props.youtube.map((item) => {
         return (
           <li className={(item.id || item.youtubeId) === this.state.selectedIndex ? 'active' : ''}
             onClick={() => this.handleClick(item)}
@@ -35,10 +46,9 @@ export default class YoutubeList extends Component {
     return (
       <div className='youtube-list' >
         <ul>
-          { youtube }
+          {youtube}
         </ul>
       </div>
     )
   }
 }
-

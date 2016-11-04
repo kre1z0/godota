@@ -114,7 +114,7 @@ const port = 1988
 
 app.use(express.static(path.join() + '/dist'))
 
-app.listen(port, '0.0.0.0', function onStart (err) {
+app.listen(port, '0.0.0.0',  (err) => {
   if (err) {
     console.log(err)
   }

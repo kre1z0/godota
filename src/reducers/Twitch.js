@@ -1,6 +1,7 @@
 const Twitch = (state = {
   display: 'none',
-  active: ''
+  active: '',
+  loader: false
 }, action) => {
   switch (action.type) {
     case 'LOAD_STREAM':
@@ -22,6 +23,11 @@ const Twitch = (state = {
         img: action.img,
         date: action.date,
         display: action.display
+      }
+    case 'LOADER_IMG':
+      return {
+        ...state,
+        loader: action.loader
       }
     case 'VIDEO_RESIZE':
       return {

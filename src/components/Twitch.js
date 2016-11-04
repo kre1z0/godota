@@ -2,7 +2,6 @@ import './twitch.scss'
 import React, { Component, PropTypes } from 'react'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
-import dota2 from '../json/twitch.json'
 import { fetchTwitch } from '../actions/fetchTwitch'
 import { resizeTwitchIframe, resizeTwitchImage } from '../actions/resizeFunction'
 
@@ -12,7 +11,7 @@ import { resizeTwitchIframe, resizeTwitchImage } from '../actions/resizeFunction
     twitch: store.Twitch.twitch
   }
 })
-export default class Streams extends Component {
+class Twitch extends Component {
   constructor (props) {
     super(props)
     this.handleResize = ::this.handleResize
@@ -20,30 +19,47 @@ export default class Streams extends Component {
       selectedIndex: []
     }
   }
+
   componentWillMount () {
-    fetchTwitch(dota2)
+    fetchTwitch()
     window.removeEventListener('resize', this.handleResize)
   }
+
   componentDidMount () {
-    setInterval(function () {
-      fetchTwitch(dota2)
+    setInterval(() => {
+      fetchTwitch()
     }, 60000)
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   }
+
   handleResize () {
     resizeTwitchIframe()
   }
+
   onMouseEnterHandler (item) {
     this.handleResize()
     resizeTwitchImage(item)
+    store.dispatch({
+      type: 'LOADER_IMG',
+      loader: true
+    })
   }
+
   onMouseLeaveHandler () {
-    const action = {
-      type: 'LOAD_IMG',
-      display: 'none'
-    }
-    store.dispatch(action)
+
+    store.dispatch(
+      [
+        {
+          type: 'LOAD_IMG',
+          display: 'none'
+        },
+        {
+          type: 'LOADER_IMG',
+          loader: false
+        }
+      ]
+    )
   }
   handleClick (item) {
     resizeTwitchIframe()
@@ -67,14 +83,14 @@ export default class Streams extends Component {
       {
         type: 'LOAD_YOUTUBE_VIDEO_TITLE',
         videoTitle: ''
-      }
-    ]
+      }]
     )
   }
   static propTypes = {
     twitch: PropTypes.array,
     active: PropTypes.string
   }
+
   render () {
     let twitches
     if (this.props.twitch) {
@@ -84,11 +100,11 @@ export default class Streams extends Component {
             onMouseEnter={() => this.onMouseEnterHandler(item)}
             onMouseLeave={this.onMouseLeaveHandler}
             className={(this.state.selectedIndex === item.channel.id) && this.props.active}
-            title={item.channel.status} key={item.channel.id}>
+            title={item.channel.status} key={item.channel.id} >
             <img src={'./images/flag_country/' + item.channel.country + '.png'}
               title={item.channel.country} />
-            <span className='streamers__name'>{item.channel.nickname}</span>
-            <div className='streamers__viewers'>
+            <span className='streamers__name' >{item.channel.nickname}</span>
+            <div className='streamers__viewers' >
               <span>{item.viewers}</span>
               <i className='fa fa-user' />
             </div>
@@ -97,10 +113,10 @@ export default class Streams extends Component {
       })
     }
     return (
-      <div className='streamers'>
+      <div className='streamers' >
         <ul>
           {
-            twitches || <div className='loading'>
+            twitches || <div className='loading' >
               <div className='loading-bar' />
             </div>
           }
@@ -109,3 +125,6 @@ export default class Streams extends Component {
     )
   }
 }
+
+
+export default Twitch

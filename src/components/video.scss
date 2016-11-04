@@ -18,10 +18,23 @@
     position: absolute;
     top: 5px;
     left: 5px;
+    z-index: 998;
   }
   .videoFrame {
     width: 100%;
     vertical-align: middle;
   }
+  .img-loading {
+    z-index: 999;
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -32px;
+    top: 50%;
+    margin-top: -32px;
+    &.loader {
+      display: block;
+    }
+  }
 }
-

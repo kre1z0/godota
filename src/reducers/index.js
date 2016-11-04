@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import Youtube from './Youtube'
 import Twitch from './Twitch'
 
-const App = combineReducers({
+const rootReducer = combineReducers({
   Youtube,
   Twitch
 })
 
-export default App
+export default rootReducer

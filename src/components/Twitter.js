@@ -54,7 +54,7 @@ class Twitter extends Component {
   render () {
     return (
       <Scrollbars className='scroll_bar'
-        style={{ height: 600 }}
+        style={{ height: 800 }}
         renderTrackVertical={props => <div {...props} className='track-vertical' />}
         renderThumbVertical={props => <div {...props} className='thumb-vertical' />}
         renderView={props => <div {...props} className='view' />} >
