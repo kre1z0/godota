@@ -53,9 +53,6 @@ class YoutubeVideo extends Component {
   render () {
     let video
     if (this.props.video) {
-
-      console.log('ggwp', this.props.video)
-
       video = this.props.video.map((item) => {
         const dateTime = item.snippet.publishedAt
         const formattedDT = moment(dateTime).startOf('hour').fromNow()

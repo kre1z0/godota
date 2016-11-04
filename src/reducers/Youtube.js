@@ -15,11 +15,6 @@ const Youtube = (state = {}, action) => {
         ...state,
         video: action.video
       }
-    case 'ggwp':
-      return {
-        ...state,
-        tt: action.tt
-      }
     case 'LOAD_YOUTUBE_VIDEO':
       return {
         ...state,
