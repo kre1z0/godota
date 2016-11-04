@@ -1,44 +1,129 @@
 import 'isomorphic-fetch'
 import store from '../store/configureStore'
 
-export function doList () {
+
+export function getYoutube () {
   return dispatch => Promise.all([
     dispatch(getYoutubeChannelsList()),
-  ]);
+    dispatch(getChannelsNames())
+  ])
 }
 
-store.dispatch(doList()).then((json) => {
-  console.log('doList', json)
+store.dispatch(getYoutube()).then(() => {
+  console.log('I did everything!');
 });
 
 function getYoutubeChannelsList () {
   return dispatch =>
     fetch(
       './json/youtube.json'
-    ).then(
-      response => response.json()
-    ).then(
-      json => dispatch({
-        type: 'LOAD_YOUTUBE_LIST',
-        youtube: json
-      }),
-      err => dispatch({ type: 'YOUTUBE_LIST_FAILED', err })
-    );
+    ).then((response) => {
+      return response.json()
+    }).then((json) => {
+      return dispatch({ type: 'YOUTUBE_CHANNEL_LIST', youtubeChannelsList: json })
+    }).catch((error) => {
+      return dispatch({ type: 'YOUTUBE_CHANNEL_LIST_ERROR', youtubeChannelsListError: error })
+    })
+}
+
+// let channelNames = getChannelsNames(json)
+// console.log('getChannelsNames', channelNames)
+// let channelIDs = getChannelsIDs(channelNames)
+// console.log('channelIDs', channelIDs)
+// let channelsVideo = getChannelsVideo(channelIDs)
+// console.log('I did everything!', channelsVideo)
+
+
+function getChannelsNames (json) {
+
+  return dispatch =>
+    fetch(
+      './json/youtube.json'
+    ).then((response) => {
+      return response.json()
+    }).then((json) => {
+      let array = []
+      json.map((item) => {
+        const channelName = item.id
+        const channelId = item.youtubeId
+        if (channelName) {
+          array.push({
+            name: channelName
+          })
+        } else {
+          array.push({
+            id: channelId
+          })
+        }
+      })
+      return dispatch({ type: 'ggwp', tt: array })
+    }).catch((error) => {
+      console.log('error', error)
+    })
+
+}
+
+function getChannelsIDs (channelNames) {
+  let array = []
+  console.log(channelNames)
+  channelNames.map((item)=> {
+    if (item.name) {
+      const url = 'https://www.googleapis.com/youtube/v3/channels?' +
+        'part=contentDetails&' +
+        'forUsername=' + item.name + '&' +
+        'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
+      getId(url)
+    } else {
+      const url = 'https://www.googleapis.com/youtube/v3/channels?' +
+        'part=contentDetails&' +
+        'id=' + item.id + '&' +
+        'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
+      getId(url)
+    }
+  })
+  function getId (url) {
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((json) => {
+      const item = json.items[0].id
+      array.push(item)
+      // getVideos(item)
+    }).catch(function (ex) {
+      console.log('parsing failed', ex)
+    })
+  }
+
+  return array
+}
+
+function getChannelsVideo (channelIDs) {
+
+  let array = []
+
+  const videoResults = 4
+  console.log('ggdvfdgdfgdf', channelIDs)
+  channelIDs.map((item) => {
+    const url = 'https://www.googleapis.com/youtube/v3/search?' +
+      'maxResults=' + videoResults + '&' +
+      'part=snippet&' +
+      'channelId=' + item + '&' +
+      'order=date&' +
+      'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
+    fetch(url).then((response) => {
+      return response.json()
+    }).then((json) => {
+      const items = json.items
+      items.map((item) => {
+        array.push(item)
+      })
+    }).catch(function (ex) {
+      console.log('parsing failed', ex)
+    })
+  })
+  return array
 }
 
 // **************************************************************
-
-export function doVideo () {
-  return dispatch => Promise.all([
-    dispatch(getAllVideo()),
-  ]);
-}
-
-store.dispatch(doVideo()).then((json) => {
-  console.log('doVideo', json)
-});
-
-
 function getAllVideo () {
   let promises = []
   fetch(
@@ -46,7 +131,6 @@ function getAllVideo () {
   ).then(
     response => response.json()
   ).then((json) => {
-
       json.map((item) => {
         const channelName = item.id
         const channelId = item.youtubeId
@@ -54,35 +138,7 @@ function getAllVideo () {
       })
     }
   )
-  function getChannelsId (channelName, channelId) {
-    if (channelName) {
-      const url = 'https://www.googleapis.com/youtube/v3/channels?' +
-        'part=contentDetails&' +
-        'forUsername=' + channelName + '&' +
-        'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
-      getId(url)
-    }
-    if (channelId) {
-      const url = 'https://www.googleapis.com/youtube/v3/channels?' +
-        'part=contentDetails&' +
-        'id=' + channelId + '&' +
-        'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
-      getId(url)
-    }
-  }
-  function getId (url) {
-    fetch(url).then((response) => {
-      return response.json()
-    }).then((json) => {
-      const item = json.items[0].id
-      getVideos(item)
-    }).catch(function (ex) {
-      console.log('parsing failed', ex)
-    })
-  }
-
   function getVideos (pid) {
-
     const vidResults = 1
     const url = 'https://www.googleapis.com/youtube/v3/search?' +
       'maxResults=' + vidResults + '&' +
@@ -102,19 +158,12 @@ function getAllVideo () {
       console.log('parsing failed', ex)
     })
   }
-  return dispatch => Promise.all(promises).then(() => {
-    return dispatch({
-      type: 'LOAD_YOUTUBE_VIDEO',
-      video: promises
-    })
+
+  store.dispatch({
+    type: 'LOAD_YOUTUBE_VIDEO',
+    video: promises
   })
 }
-
-
-function hh () {
-
-}
-
 
 // store.dispatch(getYoutubeChannelsList()).then((obj) => {
 //   obj.youtube.forEach((item) => {

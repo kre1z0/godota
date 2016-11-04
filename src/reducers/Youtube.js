@@ -1,14 +1,24 @@
 const Youtube = (state = {}, action) => {
   switch (action.type) {
-    case 'LOAD_YOUTUBE_LIST':
+    case 'YOUTUBE_CHANNEL_LIST':
       return {
         ...state,
-        youtube: action.youtube
+        youtubeChannelsList: action.youtubeChannelsList
       }
-    case 'YOUTUBE_LIST_FAILED':
+    case 'YOUTUBE_CHANNEL_LIST_ERROR':
       return {
         ...state,
-        err: action.err
+        youtubeChannelsListError: action.youtubeChannelsListError
+      }
+    case 'YOUTUBE_VIDEO':
+      return {
+        ...state,
+        video: action.video
+      }
+    case 'ggwp':
+      return {
+        ...state,
+        tt: action.tt
       }
     case 'LOAD_YOUTUBE_VIDEO':
       return {
@@ -18,8 +28,7 @@ const Youtube = (state = {}, action) => {
         prevPageToken: action.prevPageToken,
         nextPageToken: action.nextPageToken,
         pid: action.pid,
-        vidResults: action.vidResults,
-        video: action.video
+        vidResults: action.vidResults
       }
     case 'LOAD_YOUTUBE_ACTIVE':
       return {
@@ -37,3 +46,5 @@ const Youtube = (state = {}, action) => {
 }
 
 export default Youtube
+
+

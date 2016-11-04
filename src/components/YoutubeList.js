@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './youtubeList.scss'
 import { connect } from 'react-redux'
-import { doList } from '../actions/youtube'
 
 @connect((store) => {
   return {
-    youtube: store.Youtube.youtube,
+    youtubeChannelsList: store.Youtube.youtubeChannelsList,
+    youtubeChannelsListError: store.Youtube.youtubeChannelsListError
   }
 })
 export default class YoutubeList extends Component {
@@ -14,9 +14,6 @@ export default class YoutubeList extends Component {
     this.state = {
       selectedIndex: []
     }
-  }
-  componentWillMount () {
-    doList()
   }
   handleClick (item) {
     this.setState({ selectedIndex: item.id || item.youtubeId })
@@ -31,8 +28,8 @@ export default class YoutubeList extends Component {
 
   render () {
     let youtube
-    if (this.props.youtube) {
-      youtube = this.props.youtube.map((item) => {
+    if (this.props.youtubeChannelsList) {
+      youtube = this.props.youtubeChannelsList.map((item) => {
         return (
           <li className={(item.id || item.youtubeId) === this.state.selectedIndex ? 'active' : ''}
             onClick={() => this.handleClick(item)}

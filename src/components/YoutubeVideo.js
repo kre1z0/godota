@@ -3,8 +3,7 @@ import './youtubeVideo.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { getAllChannels } from '../actions/youtube'
-import { doVideo } from '../actions/youtube'
+import { getYoutube } from '../actions/youtube'
 
 @connect((store) => {
   return {
@@ -21,9 +20,8 @@ class YoutubeVideo extends Component {
   }
 
   componentWillMount () {
-    doVideo()
+    getYoutube()
   }
-
   static propTypes = {
     video: PropTypes.array,
     active: PropTypes.string
@@ -54,9 +52,11 @@ class YoutubeVideo extends Component {
 
   render () {
     let video
-    if ( this.props.video) {
+    if (this.props.video) {
+
       console.log('ggwp', this.props.video)
-      video =  this.props.video.map((item) => {
+
+      video = this.props.video.map((item) => {
         const dateTime = item.snippet.publishedAt
         const formattedDT = moment(dateTime).startOf('hour').fromNow()
         return (
