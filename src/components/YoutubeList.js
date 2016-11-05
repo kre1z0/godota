@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import './youtubeList.scss'
 import { connect } from 'react-redux'
+import { getVideoChannel } from '../actions/getVideoChannel'
 
 @connect((store) => {
   return {
@@ -17,15 +18,13 @@ export default class YoutubeList extends Component {
   }
   handleClick (item) {
     this.setState({ selectedIndex: item.id || item.youtubeId })
-
-    // const channelName = item.id
-    // const channelId = item.youtubeId
-    // const oneChannel = true
-    //
-    // const args = [channelName, channelId, oneChannel]
-    // getYoutubeChannelsList(...args)
+    const channelName = item.id
+    const channelId = item.youtubeId
+    getVideoChannel(channelName, channelId)
   }
-
+  static propTypes = {
+    youtubeChannelsList: PropTypes.array,
+  }
   render () {
     let youtube
     if (this.props.youtubeChannelsList) {

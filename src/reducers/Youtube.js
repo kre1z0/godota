@@ -10,11 +10,6 @@ const Youtube = (state = {}, action) => {
         ...state,
         youtubeChannelsListError: action.youtubeChannelsListError
       }
-    case 'YOUTUBE_VIDEO':
-      return {
-        ...state,
-        video: action.video
-      }
     case 'LOAD_YOUTUBE_VIDEO':
       return {
         ...state,
@@ -23,17 +18,24 @@ const Youtube = (state = {}, action) => {
         prevPageToken: action.prevPageToken,
         nextPageToken: action.nextPageToken,
         pid: action.pid,
-        vidResults: action.vidResults
+        vidResults: action.vidResults,
+        video: action.video
+      }
+    case 'LOAD_YOUTUBE_TITLE':
+      return {
+        ...state,
+        title: action.title,
+        channelHref: action.channelHref,
+      }
+    case 'LOAD_YOUTUBE_LOGO':
+      return {
+        ...state,
+        logo: action.logo
       }
     case 'LOAD_YOUTUBE_ACTIVE':
       return {
         ...state,
         active: action.active
-      }
-    case 'LOAD_YOUTUBE_VIDEO_TITLE':
-      return {
-        ...state,
-        videoTitle: action.videoTitle
       }
     default:
       return state

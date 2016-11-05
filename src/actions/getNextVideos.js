@@ -25,10 +25,10 @@ export function getNextVideos (nextPageToken, pid, vidResults) {
         nextPageToken: next,
         prevPageToken: prev,
         pid: pid,
-        title: title,
-        channelHref: 'https://www.youtube.com/channel/' + channelHref,
         vidResults: vidResults,
-        video: items
+        video: items,
+        channelHref: 'https://www.youtube.com/channel/' + channelHref,
+        title: title
       }
     )
   }).catch(function (ex) {

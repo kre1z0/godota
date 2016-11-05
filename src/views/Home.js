@@ -6,7 +6,6 @@ import Chat from '../components/Chat'
 import YoutubeList from '../components/YoutubeList'
 import YoutubeVideoList from '../components/YoutubeVideo'
 import Notes from '../components/Notes'
-import YoutubeVideoNav from '../components/YoutubeNav'
 
 const Home = () => (
   <div className='home' >
@@ -16,7 +15,6 @@ const Home = () => (
     </div>
     <div id='center_side' className='center_side' >
       <Video />
-      <YoutubeVideoNav />
       <YoutubeVideoList />
     </div>
     <div className='right_side' >

@@ -61,6 +61,7 @@ class Twitch extends Component {
       ]
     )
   }
+
   handleClick (item) {
     resizeTwitchIframe()
     this.setState({ selectedIndex: item.channel.id })
@@ -69,23 +70,21 @@ class Twitch extends Component {
     const urlChat = 'http://www.twitch.tv/' + nameString + '/chat?popout='
 
     store.dispatch([
-      {
-        type: 'LOAD_STREAM',
-        video: url,
-        chat: urlChat,
-        display: 'none',
-        active: 'active'
-      },
-      {
-        type: 'LOAD_YOUTUBE_ACTIVE',
-        active: ''
-      },
-      {
-        type: 'LOAD_YOUTUBE_VIDEO_TITLE',
-        videoTitle: ''
-      }]
+        {
+          type: 'LOAD_STREAM',
+          video: url,
+          chat: urlChat,
+          display: 'none',
+          active: 'active'
+        },
+        {
+          type: 'LOAD_YOUTUBE_ACTIVE',
+          active: ''
+        },
+      ]
     )
   }
+
   static propTypes = {
     twitch: PropTypes.array,
     active: PropTypes.string

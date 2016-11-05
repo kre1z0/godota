@@ -13,6 +13,7 @@
       content: 'Show Chat';
     }
     &.active {
+      background: $hover-bg;
       &:before {
         content: 'Hide Chat';
       }
@@ -27,7 +28,7 @@
       display: block;
     }
     .chatFrame {
-      background: url("../static/images/kappa.jpg");
+      background: url("../static/images/kappa.jpg") center center;
       background-size: cover;
       width: 100%;
       vertical-align: middle;

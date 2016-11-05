@@ -8,7 +8,7 @@ const logger = createLogger()
 const createStoreWithMiddleware = applyMiddleware(
   thunk,
   reduxMulti,
-  logger
+  // logger
 )
 
 const store = createStore(rootReducer, createStoreWithMiddleware)

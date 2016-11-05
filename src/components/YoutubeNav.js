@@ -12,7 +12,7 @@ import { getNextVideos } from '../actions/getNextVideos'
     vidResults: store.Youtube.vidResults,
     title: store.Youtube.title,
     channelHref: store.Youtube.channelHref,
-    videoTitle: store.Youtube.videoTitle
+    logo: store.Youtube.logo
   }
 })
 class YoutubeVideoNav extends Component {
@@ -21,6 +21,7 @@ class YoutubeVideoNav extends Component {
     this.ClickPrev = ::this.ClickPrev
     this.ClickNext = ::this.ClickNext
   }
+
   ClickPrev () {
     if (this.props.prevPageToken) {
       store.dispatch(
@@ -31,6 +32,7 @@ class YoutubeVideoNav extends Component {
       )
     }
   }
+
   ClickNext () {
     if (this.props.nextPageToken) {
       store.dispatch(
@@ -41,47 +43,57 @@ class YoutubeVideoNav extends Component {
       )
     }
   }
+
   static propTypes = {
     prevPageToken: PropTypes.string,
     nextPageToken: PropTypes.string,
-    videoTitle: PropTypes.string,
     title: PropTypes.string,
     channelHref: PropTypes.string,
     pid: PropTypes.string,
     vidResults: PropTypes.number
   }
+
   render () {
+    const logo = (
+      <a href={this.props.channelHref} target='_blank'
+        className='title_youtube_channel block-style' > <img className='youtube-channel-logo' src={this.props.logo}
+        alt="" />{this.props.title} </a>
+    )
+    const prevButton = ( <button className='prev' onClick={this.ClickPrev} >
+      <i className='fa fa-arrow-left' aria-hidden='true' />
+    </button>)
+
+    const nextButton = (<button className='next' onClick={this.ClickNext} >
+      <i className='fa fa-arrow-right' aria-hidden='true' />
+    </button>)
+
     if (this.props.prevPageToken && this.props.nextPageToken) {
       return (
-        <div className='youtube-video-nav clearfix'>
-          <a href={this.props.channelHref} target='_blank'
-            className='title_youtube_channel block-style'>{this.props.title}</a>
-          <span className='title_youtube_video'>{this.props.videoTitle}</span>
-          <div className='btn-grp'>
-            <button className='next' onClick={this.ClickNext}>
-              <i className='fa fa-arrow-right' aria-hidden='true' />
-            </button>
-            <button className='prev' onClick={this.ClickPrev}>
-              <i className='fa fa-arrow-left' aria-hidden='true' />
-            </button>
+        <div className='item youtube-video-nav clearfix' >
+          {logo}
+          <div className='btn-grp' >
+            {prevButton}
+            {nextButton}
           </div>
         </div>
       )
-    } else {
-      if (this.props.nextPageToken) {
-        return (
-          <div className='youtube-video-nav clearfix'>
-            <a href={this.props.channelHref} target='_blank'
-              className='title_youtube_channel block-style'>{this.props.title}</a>
-            <span className='title_youtube_video'>{this.props.videoTitle}</span>
-            <div className='btn-grp'>
-              <button className='next' onClick={this.ClickNext}>
-                <i className='fa fa-arrow-right' aria-hidden='true' />
-              </button>
-            </div>
+    }
+    if (this.props.nextPageToken) {
+      return (
+        <div className='item youtube-video-nav clearfix' >
+          {logo}
+          <div className='btn-grp' >
+            {nextButton}
           </div>
-        )
-      }
+        </div>
+      )
+    }
+    if (this.props.title) {
+      return (
+        <div className='item youtube-video-nav clearfix' >
+          {logo}
+        </div>
+      )
     }
     return (
       <div />
