@@ -9,7 +9,8 @@ import YoutubeVideoNav from '../components/YoutubeNav'
 @connect((store) => {
   return {
     video: store.Youtube.video,
-    active: store.Youtube.active
+    active: store.Youtube.active,
+    logo: store.Youtube.logo
   }
 })
 class YoutubeVideo extends Component {
@@ -25,7 +26,7 @@ class YoutubeVideo extends Component {
   }
 
   handleClick (item) {
-
+    console.log('item', item)
     const videoId = item.id.videoId
     const channelHref = item.snippet.channelId
     const title = item.snippet.channelTitle
@@ -37,6 +38,10 @@ class YoutubeVideo extends Component {
           video: url,
           display: 'none',
           active: ''
+        },
+        {
+          type: 'LOAD_YOUTUBE_LOGO',
+          logo: item.logo || this.props.logo
         },
         {
           type: 'LOAD_YOUTUBE_TITLE',

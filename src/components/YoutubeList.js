@@ -22,9 +22,11 @@ export default class YoutubeList extends Component {
     const channelId = item.youtubeId
     getVideoChannel(channelName, channelId)
   }
+
   static propTypes = {
     youtubeChannelsList: PropTypes.array,
   }
+
   render () {
     let youtube
     if (this.props.youtubeChannelsList) {

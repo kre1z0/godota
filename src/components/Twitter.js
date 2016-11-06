@@ -66,7 +66,7 @@ class Twitter extends Component {
             data-border-color='#444444'
             ref='twittertimeline'
             className='twitter-timeline'
-            data-chrome='nofooter transparent noborders noheader'
+            data-chrome='nofooter transparent noheader'
           />
         </div>
       </Scrollbars>

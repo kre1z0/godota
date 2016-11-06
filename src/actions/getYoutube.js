@@ -9,9 +9,8 @@ export function getYoutube () {
 }
 
 store.dispatch(getYoutube()).then(() => {
-  console.log('I did everything!')
-})
 
+})
 
 function getYoutubeChannelsList () {
   const url = './json/youtube.json'
@@ -19,6 +18,15 @@ function getYoutubeChannelsList () {
     fetch(url)
       .then(response => response.json())
       .then((json) => {
+        json.sort(function (a, b) {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (a.name < b.name) {
+            return -1;
+          }
+          return 0;
+        })
         return dispatch({ type: 'YOUTUBE_CHANNEL_LIST', youtubeChannelsList: json })
       }).catch((error) => {
       return dispatch => ({ type: 'YOUTUBE_CHANNEL_LIST_ERROR', youtubeChannelsListError: error })
@@ -81,18 +89,22 @@ function getId (url) {
 }
 
 function getVideos (channelId, channelLogo) {
-  const maxResults = 1
+  const maxResults = 10
   const url = 'https://www.googleapis.com/youtube/v3/search?' +
     'maxResults=' + maxResults + '&' +
     'part=snippet&' +
     'channelId=' + channelId + '&' +
     'order=date&' +
     'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
-  console.log(channelLogo)
   return fetch(url)
     .then(response => response.json())
     .then((json) => {
+
+      for(const item of json.items) {
+        item.logo =  channelLogo;
+      }
       return json.items
+
     }).catch((ex) => {
       console.log('parsing failed', ex)
     })

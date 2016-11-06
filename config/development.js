@@ -68,6 +68,7 @@ const config = {
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
+    new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -27,7 +27,8 @@ class YoutubeVideoNav extends Component {
       store.dispatch(
         {
           type: 'LOAD_YOUTUBE_VIDEO',
-          video: getNextVideos(this.props.prevPageToken, this.props.pid, this.props.vidResults)
+          video: getNextVideos(this.props.prevPageToken,
+            this.props.pid, this.props.vidResults, this.props.logo)
         }
       )
     }
@@ -38,7 +39,8 @@ class YoutubeVideoNav extends Component {
       store.dispatch(
         {
           type: 'LOAD_YOUTUBE_VIDEO',
-          video: getNextVideos(this.props.nextPageToken, this.props.pid, this.props.vidResults)
+          video: getNextVideos(this.props.nextPageToken,
+            this.props.pid, this.props.vidResults, this.props.logo)
         }
       )
     }
@@ -57,7 +59,7 @@ class YoutubeVideoNav extends Component {
     const logo = (
       <a href={this.props.channelHref} target='_blank'
         className='title_youtube_channel block-style' > <img className='youtube-channel-logo' src={this.props.logo}
-        alt="" />{this.props.title} </a>
+        alt="" /><p>{this.props.title}</p></a>
     )
     const prevButton = ( <button className='prev' onClick={this.ClickPrev} >
       <i className='fa fa-arrow-left' aria-hidden='true' />
@@ -69,7 +71,7 @@ class YoutubeVideoNav extends Component {
 
     if (this.props.prevPageToken && this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav clearfix' >
+        <div className='item youtube-video-nav' >
           {logo}
           <div className='btn-grp' >
             {prevButton}
@@ -80,7 +82,7 @@ class YoutubeVideoNav extends Component {
     }
     if (this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav clearfix' >
+        <div className='item youtube-video-nav' >
           {logo}
           <div className='btn-grp' >
             {nextButton}
@@ -90,7 +92,7 @@ class YoutubeVideoNav extends Component {
     }
     if (this.props.title) {
       return (
-        <div className='item youtube-video-nav clearfix' >
+        <div className='item youtube-video-nav' >
           {logo}
         </div>
       )

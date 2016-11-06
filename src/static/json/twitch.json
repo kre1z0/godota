@@ -10,6 +10,11 @@
     "country": "United-Kingdom"
   },
   {
+    "id": "esl_ruhub_dota2",
+    "nickname": "RuHub ESL",
+    "country": "Russia"
+  },
+  {
     "id": "dendi",
     "nickname": "Dendi",
     "country": "Ukraine"
