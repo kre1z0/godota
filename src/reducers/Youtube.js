@@ -43,5 +43,3 @@ const Youtube = (state = {}, action) => {
 }
 
 export default Youtube
-
-

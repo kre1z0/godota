@@ -46,6 +46,7 @@ body {
 .home {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 10px;
   .left_side {
     background-color: $bg-color;
     border-radius: 5px;

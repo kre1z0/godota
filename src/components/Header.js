@@ -1,16 +1,21 @@
 import React from 'react'
 import './header.scss'
-import store from '../store/configureStore'
-import { fetchTwitch } from '../actions/fetchTwitch'
+import { getChannelsVideos } from '../actions/getYoutube'
 
 const Menu = [
   {
-    to: '/',
-    name: 'DOTA2',
+    name: 'сегодня',
+    during : 'day'
   },
   {
-    to: '/',
-    name: 'CS GO',
+    name: 'вчера'
+  },
+  {
+    name: 'позавчера'
+  },
+  {
+    name: 'неделю ',
+    during : 'week'
   }
 ]
 
@@ -18,11 +23,14 @@ class Header extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      selectedIndex: 'DOTA2'
+      selectedIndex: 'сегодня'
     }
   }
-
+  componentWillMount () {
+    getChannelsVideos()
+  }
   handleClick (item) {
+    getChannelsVideos(item.during)
     this.setState({ selectedIndex: item.name })
   }
 

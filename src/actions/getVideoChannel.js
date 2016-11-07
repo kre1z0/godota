@@ -24,8 +24,8 @@ function getId (url) {
       const channelId = json.items[0].id
       getVideos(channelId, channelLogo)
     }).catch((ex) => {
-    console.log('parsing failed', ex)
-  })
+      console.log('parsing failed', ex)
+    })
 }
 
 function getVideos (channelId, channelLogo) {
@@ -41,7 +41,7 @@ function getVideos (channelId, channelLogo) {
     .then(response => response.json())
     .then((json) => {
       for (const item of json.items) {
-        item.logo = channelLogo;
+        item.logo = channelLogo
       }
       const logo = json.items[0].logo
       const vidResults = 7
@@ -51,22 +51,21 @@ function getVideos (channelId, channelLogo) {
       const channelHref = json.items[0].snippet.channelId
 
       store.dispatch([
-          {
-            type: 'LOAD_YOUTUBE_VIDEO',
-            nextPageToken: next,
-            title: title,
-            vidResults: vidResults,
-            pid: channelId,
-            channelHref: 'https://www.youtube.com/channel/' + channelHref,
-            video: items
-          },
-          {
-            type: 'LOAD_YOUTUBE_LOGO',
-            logo: logo
-          }
-        ]
-      )
+        {
+          type: 'LOAD_YOUTUBE_VIDEO',
+          nextPageToken: next,
+          title: title,
+          vidResults: vidResults,
+          pid: channelId,
+          channelHref: 'https://www.youtube.com/channel/' + channelHref,
+          video: items
+        },
+        {
+          type: 'LOAD_YOUTUBE_LOGO',
+          logo: logo
+        }
+      ])
     }).catch((ex) => {
-    console.log('parsing failed', ex)
-  })
+      console.log('parsing failed', ex)
+    })
 }

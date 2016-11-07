@@ -6,6 +6,7 @@ import Chat from '../components/Chat'
 import YoutubeList from '../components/YoutubeList'
 import YoutubeVideoList from '../components/YoutubeVideo'
 import Notes from '../components/Notes'
+import Header from '../components/Header'
 
 const Home = () => (
   <div className='home' >
@@ -19,6 +20,7 @@ const Home = () => (
     </div>
     <div className='right_side' >
       <Chat />
+      <Header />
       <YoutubeList />
       <Notes />
     </div>

@@ -23,6 +23,7 @@
     "masonry-layout": "^4.1.1",
     "moment": "^2.15.1",
     "react": "^15.3.1",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^15.3.1",
     "react-loading": "0.0.9",

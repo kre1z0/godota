@@ -1,7 +1,7 @@
 [
   {
     "id": "natusvinceretv",
-    "name": "Na'Vi Dota2",
+    "name": "Na'Vi",
     "title": "Natus Vincere dota team channel"
   },
   {
@@ -25,14 +25,79 @@
     "title": "HellRaisers dota team channel"
   },
   {
+    "id": "Dota2ru",
+    "name": "Dota2ru",
+    "title": "Dota2.Ru - это крупнейшее киберспортивное сообщество, объединяющее тысячи игроков в странах СНГ и России."
+  },
+  {
+    "id": "SweetSosqua",
+    "name": "Sweet",
+    "title": "Всем привет, я меня зовут Sweet и этой мой канал о Dota 2. Здесь я буду выкладывать интересные истории героев Доты, а также крутые Гайды! "
+  },
+  {
+    "id": "WehSing",
+    "name": "Sing-sing",
+    "title": "MATADOR, FIGHT BULLS WITH BAREHANDS, BROKEN CAPSLOCK AND ACTIVE COMMUNIST."
+  },
+  {
+    "id": "ArxPlay",
+    "name": "ArxPlay",
+    "title": "Лучший канал по игре Дота 2 в СНГ. Видео: Баги, фишки, секреты, гайды, скрипты (макросы), обновления и многое другое."
+  },
+  {
     "id": "noobfromua",
     "name": "NoobFromUA",
     "title": "Dota 2 Channel NoobFromUA"
   },
   {
-    "name": "Dota2RuHub",
+    "youtubeId": "UCFan5OZNealqfrHL_FLtL_w",
+    "name": "EvilArthas",
+    "title": "Здесь собраны нарезки со стримов Папича он же EvilArthas.Папич(EvilArthas) Лучший в мире СНГ стример и игрок в ДОТА 2. Топ стример, с хорошей харизмой его стримы всегда веселые и интересные^_^ Это фан канал про Папича, где вы всегда увидите лучшие моменты и игры с ЗлымАртасом)"
+  },
+  {
+    "id": "Dotapoop69",
+    "name": "DOTA POOP",
+    "title": "Hilarious Dota 2 content, literally some of the funniest things that you might see."
+  },
+  {
+    "name": "RuHub",
     "youtubeId": "UCA6WssVVOv_xSB-PdQ7vYYA",
     "title": "Канал посвященный игре Dota2 и международным турнирам по этой игре.Официальный YouTube канал русскоязычных экспертов и журналистов игры Dota2."
+  },
+  {
+    "name": "LighTofHeaveN",
+    "youtubeId": "UCAeAzKZiyTYyO99_0So6rgA",
+    "title": "Дмитрий Куприянов, более известный как LighTofHeaveN - профессиональный игрок в Dota 2."
+  },
+  {
+    "name": "y0nd",
+    "youtubeId": "UCltQWOaG0oOfmFxWcldbisw",
+    "title": "Всем привет. Меня зовут Глеб (можно просто y0nd).Живу я в городе Жуковском, Московская область. "
+  },
+  {
+    "name": "Dota 2 Divine!",
+    "youtubeId": "UCiR9IHCurqVHpC821NVcW6g",
+    "title": "Welcome to Dota 2 Divine! Have Fun when playing Dota."
+  },
+  {
+    "id": "tedhimself",
+    "name": "Pyrion Flax",
+    "title": "Это один из каналов, который интересен своим творчеством и юмором, используемым для придания изюминки роликам"
+  },
+  {
+    "id": "midormeepo",
+    "name": "Mid or Meepo",
+    "title": "We may not have the skills, but we got the memes. "
+  },
+  {
+    "id": "TeamVirtuspro",
+    "name": "Ruhub Media",
+    "title": "Канал посвященный игре Dota2 и международным турнирам по этой игре.Официальный YouTube канал русскоязычных экспертов и журналистов игры Dota2."
+  },
+  {
+    "id": "OnlyBrothersGamers",
+    "name": "OnlyBrothersGamers",
+    "title": "Dota 2 Channel."
   },
   {
     "name": "Storm Studio",

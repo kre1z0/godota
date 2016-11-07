@@ -18,6 +18,7 @@
       color: #707070;
       text-decoration: none;
       margin: 0 auto;
+      z-index: 999;
       &:hover {
         color: $hover-text-color;
         background: $hover-bg;

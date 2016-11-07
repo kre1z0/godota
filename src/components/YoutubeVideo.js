@@ -2,15 +2,15 @@ import React, { Component, PropTypes } from 'react'
 import './youtubeVideo.scss'
 import store from '../store/configureStore'
 import { connect } from 'react-redux'
-import moment from 'moment'
-import { getYoutube } from '../actions/getYoutube'
+import moment from 'moment' // http://momentjs.com/
 import YoutubeVideoNav from '../components/YoutubeNav'
+// https://facebook.github.io/react/docs/animation.html
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 @connect((store) => {
   return {
     video: store.Youtube.video,
-    active: store.Youtube.active,
-    logo: store.Youtube.logo
+    active: store.Youtube.active
   }
 })
 class YoutubeVideo extends Component {
@@ -20,45 +20,37 @@ class YoutubeVideo extends Component {
       selectedIndex: []
     }
   }
-
-  componentWillMount () {
-    getYoutube()
-  }
-
   handleClick (item) {
-    console.log('item', item)
     const videoId = item.id.videoId
     const channelHref = item.snippet.channelId
     const title = item.snippet.channelTitle
-    this.setState({ selectedIndex: videoId })
+    this.setState({
+      selectedIndex: videoId
+    })
     const url = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1'
     store.dispatch([
-        {
-          type: 'LOAD_STREAM',
-          video: url,
-          display: 'none',
-          active: ''
-        },
-        {
-          type: 'LOAD_YOUTUBE_LOGO',
-          logo: item.logo || this.props.logo
-        },
-        {
-          type: 'LOAD_YOUTUBE_TITLE',
-          channelHref: 'https://www.youtube.com/channel/' + channelHref,
-          title: title
-        },
-        {
-          type: 'LOAD_YOUTUBE_ACTIVE',
-          active: 'active'
-        },
-      ]
-    )
+      {
+        type: 'LOAD_STREAM',
+        video: url,
+        display: 'none',
+        active: ''
+      },
+      {
+        type: 'LOAD_YOUTUBE_TITLE',
+        channelHref: 'https://www.youtube.com/channel/' + channelHref,
+        title: title
+      },
+      {
+        type: 'LOAD_YOUTUBE_ACTIVE',
+        active: 'active'
+      }
+    ])
   }
 
   static propTypes = {
     video: PropTypes.array,
-    active: PropTypes.string
+    active: PropTypes.string,
+    logo: PropTypes.string
   }
 
   render () {
@@ -83,10 +75,14 @@ class YoutubeVideo extends Component {
       })
     }
     return (
-      <div className='youtube-video-list' >
+      <ReactCSSTransitionGroup
+        className='youtube-video-list'
+        transitionName='example'
+        transitionEnterTimeout={1300}
+        transitionLeaveTimeout={1}>
         <YoutubeVideoNav />
         {video}
-      </div>
+      </ReactCSSTransitionGroup>
     )
   }
 }

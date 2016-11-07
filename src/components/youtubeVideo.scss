@@ -8,10 +8,6 @@
     width: calc(25% - 5px);
     margin-right: 5px;
     margin-bottom: 5px;
-    &:nth-child(4n){
-      width: 25%;
-      margin-right: 0;
-    }
     &:hover {
       .block-style {
         border: 1px solid $hover-text-color;
@@ -78,4 +74,19 @@
 }
 
 
+.example-enter {
+  opacity: 0.01;
+}
 
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1300ms ease-in;
+}
+
+.example-leave {
+  opacity: 0;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+}

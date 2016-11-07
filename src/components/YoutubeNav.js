@@ -52,16 +52,19 @@ class YoutubeVideoNav extends Component {
     title: PropTypes.string,
     channelHref: PropTypes.string,
     pid: PropTypes.string,
-    vidResults: PropTypes.number
+    vidResults: PropTypes.number,
+    logo: PropTypes.string
   }
 
   render () {
     const logo = (
       <a href={this.props.channelHref} target='_blank'
-        className='title_youtube_channel block-style' > <img className='youtube-channel-logo' src={this.props.logo}
-        alt="" /><p>{this.props.title}</p></a>
+        className='title_youtube_channel block-style' >
+        <img className='youtube-channel-logo' src={this.props.logo} alt='logo' />
+        <p>{this.props.title}</p>
+      </a>
     )
-    const prevButton = ( <button className='prev' onClick={this.ClickPrev} >
+    const prevButton = (<button className='prev' onClick={this.ClickPrev} >
       <i className='fa fa-arrow-left' aria-hidden='true' />
     </button>)
 
@@ -71,7 +74,7 @@ class YoutubeVideoNav extends Component {
 
     if (this.props.prevPageToken && this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav' >
+        <div className='item youtube-video-nav'>
           {logo}
           <div className='btn-grp' >
             {prevButton}
@@ -82,18 +85,11 @@ class YoutubeVideoNav extends Component {
     }
     if (this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav' >
+        <div className='item youtube-video-nav'>
           {logo}
           <div className='btn-grp' >
             {nextButton}
           </div>
-        </div>
-      )
-    }
-    if (this.props.title) {
-      return (
-        <div className='item youtube-video-nav' >
-          {logo}
         </div>
       )
     }

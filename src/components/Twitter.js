@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import './twitter.scss'
 import ReactDOM from 'react-dom'
 // react-custom-scrollbars docs
@@ -54,7 +54,7 @@ class Twitter extends Component {
   render () {
     return (
       <Scrollbars className='scroll_bar'
-        style={{ height: 800 }}
+        style={{ height: 1300 }}
         renderTrackVertical={props => <div {...props} className='track-vertical' />}
         renderThumbVertical={props => <div {...props} className='thumb-vertical' />}
         renderView={props => <div {...props} className='view' />} >

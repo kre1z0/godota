@@ -47,7 +47,6 @@ class Twitch extends Component {
   }
 
   onMouseLeaveHandler () {
-
     store.dispatch(
       [
         {
@@ -70,19 +69,18 @@ class Twitch extends Component {
     const urlChat = 'http://www.twitch.tv/' + nameString + '/chat?popout='
 
     store.dispatch([
-        {
-          type: 'LOAD_STREAM',
-          video: url,
-          chat: urlChat,
-          display: 'none',
-          active: 'active'
-        },
-        {
-          type: 'LOAD_YOUTUBE_ACTIVE',
-          active: ''
-        },
-      ]
-    )
+      {
+        type: 'LOAD_STREAM',
+        video: url,
+        chat: urlChat,
+        display: 'none',
+        active: 'active'
+      },
+      {
+        type: 'LOAD_YOUTUBE_ACTIVE',
+        active: ''
+      }
+    ])
   }
 
   static propTypes = {
@@ -124,6 +122,5 @@ class Twitch extends Component {
     )
   }
 }
-
 
 export default Twitch

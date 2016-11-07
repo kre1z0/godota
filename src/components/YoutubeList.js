@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import './youtubeList.scss'
 import { connect } from 'react-redux'
 import { getVideoChannel } from '../actions/getVideoChannel'
+import { getYoutubeChannelsList } from '../actions/getYoutubeChannelsList'
 
 @connect((store) => {
   return {
@@ -16,6 +17,9 @@ export default class YoutubeList extends Component {
       selectedIndex: []
     }
   }
+  componentWillMount () {
+    getYoutubeChannelsList()
+  }
   handleClick (item) {
     this.setState({ selectedIndex: item.id || item.youtubeId })
     const channelName = item.id
@@ -24,7 +28,7 @@ export default class YoutubeList extends Component {
   }
 
   static propTypes = {
-    youtubeChannelsList: PropTypes.array,
+    youtubeChannelsList: PropTypes.array
   }
 
   render () {
