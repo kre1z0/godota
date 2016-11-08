@@ -1,5 +1,7 @@
 # cybersport
 
+https://kreiz0.github.io/projects/godota/ 
+
 npm install
 
 npm run front - development
