@@ -6,7 +6,7 @@ import Chat from '../components/Chat'
 import YoutubeList from '../components/YoutubeList'
 import YoutubeVideoList from '../components/YoutubeVideo'
 import Notes from '../components/Notes'
-import Header from '../components/Header'
+import Header from '../components/YoutubeSort'
 
 const Home = () => (
   <div className='home' >

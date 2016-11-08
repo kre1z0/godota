@@ -2,6 +2,8 @@
 
 .youtube-list {
   width: 100%;
+  position: relative;
+  z-index: 1;
   ul {
     padding: 0;
     margin: 0;

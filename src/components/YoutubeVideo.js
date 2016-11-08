@@ -21,6 +21,7 @@ class YoutubeVideo extends Component {
     }
   }
   handleClick (item) {
+    window.scrollTo(0, 0)
     const videoId = item.id.videoId
     const channelHref = item.snippet.channelId
     const title = item.snippet.channelTitle

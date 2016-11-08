@@ -3,6 +3,7 @@ import './youtubeList.scss'
 import { connect } from 'react-redux'
 import { getVideoChannel } from '../actions/getVideoChannel'
 import { getYoutubeChannelsList } from '../actions/getYoutubeChannelsList'
+import store from '../store/configureStore'
 
 @connect((store) => {
   return {
@@ -25,6 +26,10 @@ export default class YoutubeList extends Component {
     const channelName = item.id
     const channelId = item.youtubeId
     getVideoChannel(channelName, channelId)
+    store.dispatch({
+      type: 'YOUTUBE_SORT_ACTIVE',
+      selected: ''
+    })
   }
 
   static propTypes = {

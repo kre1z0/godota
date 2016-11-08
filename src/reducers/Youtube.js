@@ -1,4 +1,6 @@
-const Youtube = (state = {}, action) => {
+const Youtube = (state = {
+  selected: 'selected'
+}, action) => {
   switch (action.type) {
     case 'YOUTUBE_CHANNEL_LIST':
       return {
@@ -36,6 +38,11 @@ const Youtube = (state = {}, action) => {
       return {
         ...state,
         active: action.active
+      }
+    case 'YOUTUBE_SORT_ACTIVE':
+      return {
+        ...state,
+        selected: action.selected
       }
     default:
       return state

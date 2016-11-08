@@ -96,7 +96,7 @@ class Twitch extends Component {
           <li onClick={() => this.handleClick(item)}
             onMouseEnter={() => this.onMouseEnterHandler(item)}
             onMouseLeave={this.onMouseLeaveHandler}
-            className={(this.state.selectedIndex === item.channel.id) && this.props.active}
+            className={(this.state.selectedIndex === item.channel.id) ? this.props.active : ''}
             title={item.channel.status} key={item.channel.id} >
             <img src={'./images/flag_country/' + item.channel.country + '.png'}
               title={item.channel.country} />

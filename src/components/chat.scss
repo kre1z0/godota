@@ -1,5 +1,7 @@
 @import "../styles/variables";
 .twitch_chat {
+  position: relative;
+  z-index: 1;
   .chat-button {
     color: $text-color-gray;
     font-size: 15px;

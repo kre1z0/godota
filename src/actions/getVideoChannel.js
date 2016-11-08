@@ -29,7 +29,7 @@ function getId (url) {
 }
 
 function getVideos (channelId, channelLogo) {
-  const maxResults = 7
+  const maxResults = 15
   const url = 'https://www.googleapis.com/youtube/v3/search?' +
     'maxResults=' + maxResults + '&' +
     'part=snippet&' +
@@ -44,7 +44,7 @@ function getVideos (channelId, channelLogo) {
         item.logo = channelLogo
       }
       const logo = json.items[0].logo
-      const vidResults = 7
+      const vidResults = 15
       const items = json.items
       const next = json.nextPageToken
       const title = json.items[0].snippet.channelTitle
