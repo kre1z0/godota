@@ -66,7 +66,7 @@ class Twitch extends Component {
     this.setState({ selectedIndex: item.channel.id })
     const nameString = item.channel.name
     const url = 'https://player.twitch.tv/?channel=' + nameString
-    const urlChat = 'http://www.twitch.tv/' + nameString + '/chat?popout='
+    const urlChat = 'https://www.twitch.tv/' + nameString + '/chat?popout='
 
     store.dispatch([
       {

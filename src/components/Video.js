@@ -13,7 +13,7 @@ import store from '../store/configureStore'
     img: store.Twitch.img,
     date: store.Twitch.date,
     display: store.Twitch.display,
-    loader: store.Twitch.loader,
+    loader: store.Twitch.loader
   }
 })
 class Video extends Component {

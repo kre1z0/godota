@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./src",
+    "dev": "NODE_ENV=development webpack-dev-server --progress --config ./config/development.js",
     "clean": "rimraf dist && mkdir dist",
     "back": "node ./backend/app.js",
-    "front": "NODE_ENV=development webpack-dev-server --progress --config ./config/development.js",
     "build": "npm run clean && NODE_ENV=production webpack --config ./config/production.js --colors --progress"
   },
   "repository": {

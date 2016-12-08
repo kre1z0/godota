@@ -1,13 +1,12 @@
-# cybersport
+##godota
 
-https://kreiz0.github.io/projects/godota/ 
+dota2 application `React` + `Redux`
 
-npm install
+##Demo
 
-npm run front - development
+Check demo <a href="https://kre1z0.github.io/godota/ " target='_blank'>here</a>
 
-npm run build - production
+<b>./src/static/json/youtube</b> - add your youtube dota channels 
 
-<b>./src/static/json/youtube</b> - add your youtube channels 
+<b>./src/static/json/twitch</b> - add your twitch dota channels
 
-<b>./src/static/json/twitch</b> - add your twitch channels

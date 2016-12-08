@@ -25,7 +25,7 @@ export function getChannelsVideos (publishDate) {
       })
     }).catch((error) => {
       console.log('error', error)
-  })
+    })
 }
 
 function getUrl (json, publishDate) {
@@ -86,7 +86,6 @@ function filterVideos (videos, publishDate) {
   return videos.filter(filterByPublishDate)
 
   function filterByPublishDate (obj) {
-
     const publishedAt = moment(obj.snippet.publishedAt)
 
     if (publishedAt.isSame(publishDate, 'd')) {

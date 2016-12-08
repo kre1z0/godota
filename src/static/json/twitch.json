@@ -5,6 +5,16 @@
     "country": "Ukraine"
   },
   {
+    "id": "dotamajorru",
+    "nickname": "DotaMajorRU",
+    "country": "Russia"
+  },
+  {
+    "id": "dotamajor",
+    "nickname": " DotaMajor",
+    "country": "United-Kingdom"
+  },
+  {
     "id": "dreamleague",
     "nickname": "DreamLeague #1",
     "country": "United-Kingdom"
@@ -17,6 +27,11 @@
   {
     "id": "dendi",
     "nickname": "Dendi",
+    "country": "Ukraine"
+  },
+  {
+    "id": "xboct",
+    "nickname": "Xboct",
     "country": "Ukraine"
   },
   {

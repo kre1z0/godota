@@ -146,7 +146,7 @@ class Notes extends Component {
 
   handleNoteDeconste (note) {
     const noteId = note.id
-    const newNotes = this.state.notes.filter(function (note) {
+    const newNotes = this.state.notes.filter((note) => {
       return note.id !== noteId
     })
     this.setState({ notes: newNotes })
