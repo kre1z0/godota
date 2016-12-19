@@ -1,0 +1,5 @@
+{
+    "app_port": 8080,
+    "db_port": 27017,
+    "database": "godota"
+}

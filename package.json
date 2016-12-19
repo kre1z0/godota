@@ -17,6 +17,15 @@
   "author": "Igor Ivchuk <thekreizo@gmail.com> (http://kreizo.me)",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.5.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "easy-encryption": "^0.1.1",
+
     "classnames": "^2.2.5",
     "font-awesome": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
