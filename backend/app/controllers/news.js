@@ -11,7 +11,7 @@ class NewsController {
                 err: req.query.err
             });
         }).catch((err) => {
-            res.send(this.responseFormat(err, true));
+            res.render('errors/e500');
         });
     }
 
