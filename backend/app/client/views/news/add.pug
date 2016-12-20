@@ -1,0 +1,15 @@
+extends ../layout/app
+
+block title
+    | Создать новость
+
+block content
+    h2 Создать новость
+    form(action="/news/add" method="POST")
+        input(type="text" name="title" placeholder="Название" required).form-control
+        br
+        textarea(name="cover" placeholder="Краткое описание").form-control.news-cover
+        br
+        textarea(name="text" placeholder="Полный текст").form-control.news-text
+        br
+        button.btn.btn-primary Создать

@@ -11,3 +11,17 @@ main {
     width: 980px;
     margin: 0 auto !important;
 }
+
+.btn-margin {
+    margin-right: 10px;
+}
+
+textarea.news-cover {
+    height: 80px;
+    resize: none;
+}
+
+textarea.news-text {
+    height: 200px;
+    resize: vertical;
+}

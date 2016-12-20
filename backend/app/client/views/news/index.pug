@@ -1,0 +1,29 @@
+extends ../layout/app
+
+block title
+    | Новости
+
+block content
+    h2 Список последних новостей
+    - if (err)
+        - if (err == 500)
+            p.text-danger Ошибка сервера
+        - else if (err == 404) 
+            p.text-danger Новость не найдена
+
+    a.btn.btn-primary(href='/news/add/') Создать новость
+    - if (!news.length)
+        h3 Новости отсутствуют
+    - else 
+        .row
+            each item in news
+                .col-sm-6.col-md-4
+                    .thumbnail
+                        img(src='/src/img/rst.jpg', alt='news_cover')
+                        .caption
+                            h3=news.title
+                            p=news.cover
+                            p.news-date=news.date
+                            p
+                                a.btn.btn-primary.btn-margin(href='/news/edit/' + news._id, role='button') Редактировать
+                                a.btn.btn-warning(href='/news/delete/' + news._id, role='button') Удалить
