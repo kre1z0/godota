@@ -1,7 +1,8 @@
 var express = require('express');
 
-var auth = require('./auth');
 var index = require('../controllers/index');
+var auth = require('./auth');
+var api = require('./api');
 
 var router = express.Router();
 
@@ -10,5 +11,6 @@ router.get('/', index.index);
 router.get('/login', index.login);
 
 router.use('/auth', auth);
+router.use('/api', api);
 
 module.exports = router;

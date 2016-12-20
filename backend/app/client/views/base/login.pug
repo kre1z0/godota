@@ -1,16 +1,21 @@
-extends ../layout/app
-
-block title
-    | Логин
-
-block content
-    - if (error == 403)
-        h2 Неверный логин или пароль
-    - else if (error == 500)
-        h2 Ошибка севера 
-    form(method="POST" action="/auth/login")
-        input(type="text" placeholder="Логин" name="username" required)
-        br
-        input(type="password" placeholder="Пароль" name="password" required)
-        br
-        button Войти
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    title 
+        block title
+    link(href='/src/css/bootstrap.min.css' rel='stylesheet')
+    link(href='/src/css/bootstrap-theme.min.css' rel='stylesheet')
+    link(href='/src/css/main.css' rel='stylesheet')
+body
+    main.jumbotron
+        - if (error == 403)
+            h2 Неверный логин или пароль
+        - else if (error == 500)
+            h2 Ошибка севера 
+        form(method="POST" action="/auth/login")
+            input(type="text" placeholder="Логин" name="username" required).form-control
+            br
+            input(type="password" placeholder="Пароль" name="password" required).form-control
+            br
+            button.btn.btn-primary Войти

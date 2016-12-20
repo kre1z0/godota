@@ -1,0 +1,13 @@
+main {
+    width: 980px;
+    margin: 50px auto;
+}
+
+.jumbotron {
+    padding: 30px;
+}
+
+.navbar-collapse {
+    width: 980px;
+    margin: 0 auto !important;
+}
