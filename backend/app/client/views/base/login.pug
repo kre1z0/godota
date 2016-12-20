@@ -1,0 +1,16 @@
+extends ../layout/app
+
+block title
+    | Логин
+
+block content
+    - if (error == 403)
+        h2 Неверный логин или пароль
+    - else if (error == 500)
+        h2 Ошибка севера 
+    form(method="POST" action="/auth/login")
+        input(type="text" placeholder="Логин" name="username" required)
+        br
+        input(type="password" placeholder="Пароль" name="password" required)
+        br
+        button Войти

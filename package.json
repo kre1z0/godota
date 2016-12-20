@@ -25,6 +25,9 @@
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.3",
     "easy-encryption": "^0.1.1",
+    "pug": "^2.0.0-beta6",
+    "md5": "^2.1.0",
+    "serve-favicon": "^2.3.2",
 
     "classnames": "^2.2.5",
     "font-awesome": "^4.6.3",
