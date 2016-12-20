@@ -38,3 +38,20 @@ textarea.news-text {
     font-size: 15px;
     color: grey;
 }
+
+.table-input {
+    text-align: center;
+}
+
+.table-input:disabled {
+    background: none;
+    border: none;
+}
+
+.js-btn-save {
+    display: none;
+}
+
+.hidden_row {
+    display: none;
+}

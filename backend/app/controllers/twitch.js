@@ -15,24 +15,34 @@ class TwitchController {
         });
     }
 
-    addAction() {
-        Models.news.create({
-            id: req.body.id,
-            nickname: req.body.nick,
-            country: req.body.country
-        }).then(() => {
+    addAction(req, res, next) {
+        Models.twitch.create(req.body).then(() => {
             res.redirect('/twitch/');
         }).catch(() => {
             res.redirect('/twitch/?err=500');
         });
     }
 
-    editAction() {
-        //
+    editAction(req, res, next) {
+        var num = req.params.num;
+        Models.twitch.update({
+            _id: num
+        }, req.body).then(() => {
+            res.redirect('/twitch/');
+        }).catch(() => {
+            res.redirect('/twitch/?err=500');
+        });
     }
 
-    deleteAction() {
-        //
+    deleteAction(req, res, next) {
+        var num = req.params.num;
+        Models.twitch.findOneAndRemove({
+            _id: num
+        }).then(() => {
+            res.redirect('/twitch/');
+        }).catch(() => {
+            res.redirect('/twitch/?err=500');
+        });
     }
 }
 

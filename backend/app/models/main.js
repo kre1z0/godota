@@ -1,3 +1,4 @@
+var process = require('process');
 var mongoose = require('mongoose');
 
 var config = require('../../config.json');
@@ -15,6 +16,7 @@ connection.on('open', function() {
 connection.on('error', function(err) {
     console.log('Failed to connect to DB!');
     console.log(err);
+    process.exit(1);
 });
 
 mongoose.connect('mongodb://localhost:' + config.db_port + '/' + config.database);
