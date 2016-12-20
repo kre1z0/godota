@@ -20,14 +20,22 @@ class NewsController {
     }
 
     editPage(req, res, next) {
-        res.render('news/edit');
+        var num = req.params.num;
+        Models.news.findById(num).then((news) => {
+            res.render('news/edit', {
+                news,
+                err: req.query.err
+            });
+        }).catch(() => {
+            res.render('errors/e404');
+        });
     }
 
     addAction(req, res, next) {
         Models.news.create({
-            title: req.data.title,
-            cover: req.data.cover,
-            text: req.data.text,
+            title: req.body.title,
+            cover: req.body.cover,
+            text: req.body.text,
             date: new Date()
         }).then(() => {
             res.redirect('/news/');
@@ -37,11 +45,36 @@ class NewsController {
     }
 
     editAction(req, res, next) {
-        //
+        var num = req.params.num;
+        var date = new Date(req.body.date);
+
+        if (isNaN(date)) {
+            return res.redirect('/news/edit/' + num + '/?err=417');
+        }
+
+        Models.news.update({
+            _id: num
+        }, {
+            title: req.body.title,
+            cover: req.body.cover,
+            text: req.body.text,
+            date: date
+        }).then(() => {
+            res.redirect('/news/');
+        }).catch((err) => {
+            res.redirect('/news/?err=500');
+        });
     }
 
     deleteAction(req, res, next) {
-        //
+        var num = req.params.num;
+        Models.news.findOneAndRemove({
+            _id: num
+        }).then(() => {
+            res.redirect('/news/');
+        }).catch((err) => {
+            res.redirect('/news/?err=500');
+        });
     }
 }
 

@@ -11,7 +11,7 @@ block content
         - else if (err == 404) 
             p.text-danger Новость не найдена
 
-    a.btn.btn-primary(href='/news/add/') Создать новость
+    a.btn.btn-primary.btn-add-news(href='/news/add/') Создать новость
     - if (!news.length)
         h3 Новости отсутствуют
     - else 
@@ -21,9 +21,9 @@ block content
                     .thumbnail
                         img(src='/src/img/rst.jpg', alt='news_cover')
                         .caption
-                            h3=news.title
-                            p=news.cover
-                            p.news-date=news.date
+                            h3=item.title
+                            p.news-base=item.cover
+                            p.news-date=item.date
                             p
-                                a.btn.btn-primary.btn-margin(href='/news/edit/' + news._id, role='button') Редактировать
-                                a.btn.btn-warning(href='/news/delete/' + news._id, role='button') Удалить
+                                a.btn.btn-primary.btn-margin(href='/news/edit/' + item._id, role='button') Редактировать
+                                a.btn.btn-warning(href='/news/delete/' + item._id, role='button') Удалить

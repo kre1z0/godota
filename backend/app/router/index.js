@@ -12,6 +12,7 @@ router.get('/', index.index);
 router.get('/login', index.login);
 
 router.use('/auth', auth);
+router.use('/api', api);
 router.use('/news', news);
 
 module.exports = router;

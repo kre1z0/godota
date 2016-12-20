@@ -16,6 +16,10 @@ main {
     margin-right: 10px;
 }
 
+.btn-add-news {
+    margin-bottom: 20px;
+}
+
 textarea.news-cover {
     height: 80px;
     resize: none;
@@ -24,4 +28,13 @@ textarea.news-cover {
 textarea.news-text {
     height: 200px;
     resize: vertical;
+}
+
+.caption .news-base {
+    font-size: 14px;
+}
+
+.caption .news-date {
+    font-size: 15px;
+    color: grey;
 }

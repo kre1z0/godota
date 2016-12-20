@@ -8,6 +8,6 @@ router.get('/add', news.addPage);
 router.get('/edit/:num', news.editPage);
 router.post('/add', news.addAction);
 router.post('/edit/:num', news.editAction);
-router.post('/delete/:num', news.deleteAction);
+router.get('/delete/:num', news.deleteAction);
 
 module.exports = router;
