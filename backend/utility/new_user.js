@@ -1,7 +1,7 @@
 var process = require('process');
 var md5 = require('md5');
 
-var Models = require('./app/models/main');
+var Models = require('../app/models/main');
 
 function creating() {
     var login = process.argv[2];

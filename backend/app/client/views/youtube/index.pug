@@ -1,10 +1,10 @@
 extends ../layout/app
 
 block title
-    | Twitch
+    | Youtube
 
 block content
-    h2 Список Twitch-каналов
+    h2 Список Youtube-каналов
     - if (err)
         - if (err == 500)
             p.text-danger Ошибка сервера
@@ -14,34 +14,34 @@ block content
     table.table.table-stripped.table-bordered.table-hover
         tr
             th ID
-            th Nickname
-            th Country
+            th Name
+            th Title
             th
             th
         tr.hidden_row
-            form(action="/twitch/add" method="POST")
+            form(action="/youtube/add" method="POST")
                 td 
                     input(type="text" name="id" required)
                 td  
-                    input(type="text" name="nickname" required)
+                    input(type="text" name="name" required)
                 td  
-                    input(type="text" name="country" required)
+                    textarea(name="title" required)
                 td
                     button.btn.btn-default Создать
                 td
-        each twitcher in data
-            form(action="/twitch/edit/" + twitcher._id method="POST")
+        each youtuber in data
+            form(action="/youtube/edit/" + youtuber._id method="POST")
                 tr
                     td
-                        input(type="text" name="id" value=twitcher.id required disabled).table-input
+                        input(type="text" name="id" value=youtuber.id required disabled).table-input
                     td
-                        input(type="text" name="nickname" value=twitcher.nickname required disabled).table-input
+                        input(type="text" name="name" value=youtuber.name required disabled).table-input
                     td
-                        input(type="text" name="country" value=twitcher.country required disabled).table-input
+                        textarea(name="title" required disabled).table-input=youtuber.title
                     td
                         button.btn.btn-default.js-btn-change Изменить
                         button.btn.btn-default.js-btn-save Сохранить
                     td
-                        button.btn.btn-warning.js-delete(data-num=twitcher._id data-addr="twitch") Удалить
+                        button.btn.btn-warning.js-delete(data-num=youtuber._id data-addr="youtube") Удалить
     form(method="POST")#delete
     script(src='/src/js/tables.js')

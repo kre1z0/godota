@@ -7,7 +7,7 @@ class TwitchController {
         Models.twitch.find().then((twitch) => {
             twitch.reverse();
             res.render('twitch/index', {
-                twitch,
+                data: twitch,
                 err: req.query.err
             });
         }).catch((err) => {

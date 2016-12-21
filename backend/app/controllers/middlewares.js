@@ -43,22 +43,15 @@ class Middlewares {
             });
         });
     }
-    // onlyUser(req, res, next) {
-    //     if (req.user && req.user.status < 2) {
-    //         next();
-    //     }
-    //     else {
-    //         res.send(Additional.serialize(10, 'You are not authorized'));
-    //     }
-    // }
-    // onlyAdmin(req, res, next) {
-    //     if (req.user && req.user.status === 2) {
-    //         next();
-    //     }
-    //     else {
-    //         res.send(Additional.serialize(11, 'You are not admin'));
-    //     }
-    // }
+    
+    check(req, res, next) {
+        if (req.user) {
+            next();
+        }
+        else {
+            res.render('errors/e404');
+        }
+    }
 }
 
 var middlewareInstance = new Middlewares();
