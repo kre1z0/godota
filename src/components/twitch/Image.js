@@ -34,7 +34,7 @@ class Image extends Component {
           alt={this.props.image.url}
         />
         <div className={loader} >
-          <Loading type='spin' color='#272727' />
+          <Loading type='spin' color='#ffffff' />
         </div>
       </div>
     )

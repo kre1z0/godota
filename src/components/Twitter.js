@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
-import './twitter.scss'
 import ReactDOM from 'react-dom'
-// react-custom-scrollbars docs
 // https://github.com/malte-wessel/react-custom-scrollbars/tree/master/docs
 import { Scrollbars } from 'react-custom-scrollbars'
 
 class Twitter extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = ({ initialized: false, key: 0 })
     this.makeTwitter = ::this.makeTwitter
   }
 
 // ======= start section mounting {
-  componentDidMount () {
+  componentDidMount() {
     if (this.state.initialized) {
       return
     }
@@ -32,17 +30,17 @@ class Twitter extends Component {
     this.initialized()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this.makeTwitter()
   }
 
   // ======= end section mounting }
 
-  initialized () {
+  initialized() {
     this.setState({ initialized: true })
   }
 
-  makeTwitter () {
+  makeTwitter() {
     const twittertimeline = ReactDOM.findDOMNode(this.refs.twittertimeline)
     const twitterscript = document.createElement('script')
     twitterscript.src = '//platform.twitter.com/widgets.js'
@@ -51,14 +49,14 @@ class Twitter extends Component {
     twittertimeline.parentNode.appendChild(twitterscript)
   }
 
-  render () {
+  render() {
     return (
       <Scrollbars className='scroll_bar'
         style={{ height: 1300 }}
         renderTrackVertical={props => <div {...props} className='track-vertical' />}
         renderThumbVertical={props => <div {...props} className='thumb-vertical' />}
         renderView={props => <div {...props} className='view' />} >
-        <div className='scroll_bar_wrap'>
+        <div className='scroll_bar_wrap' >
           <a
             href='https://twitter.com/Kreiz0/lists/dota'
             data-link-color='#239DFF'
