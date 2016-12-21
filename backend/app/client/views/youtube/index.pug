@@ -1,0 +1,47 @@
+extends ../layout/app
+
+block title
+    | Youtube
+
+block content
+    h2 Список Youtube-каналов
+    - if (err)
+        - if (err == 500)
+            p.text-danger Ошибка сервера
+        - else if (err == 404) 
+            p.text-danger Канал не найден
+    button.btn.btn-primary.btn-add-news#add_channel Добавить канал
+    table.table.table-stripped.table-bordered.table-hover
+        tr
+            th ID
+            th Name
+            th Title
+            th
+            th
+        tr.hidden_row
+            form(action="/youtube/add" method="POST")
+                td 
+                    input(type="text" name="id" required)
+                td  
+                    input(type="text" name="name" required)
+                td  
+                    textarea(name="title" required)
+                td
+                    button.btn.btn-default Создать
+                td
+        each youtuber in data
+            form(action="/youtube/edit/" + youtuber._id method="POST")
+                tr
+                    td
+                        input(type="text" name="id" value=youtuber.id required disabled).table-input
+                    td
+                        input(type="text" name="name" value=youtuber.name required disabled).table-input
+                    td
+                        textarea(name="title" required disabled).table-input=youtuber.title
+                    td
+                        button.btn.btn-default.js-btn-change Изменить
+                        button.btn.btn-default.js-btn-save Сохранить
+                    td
+                        button.btn.btn-warning.js-delete(data-num=youtuber._id data-addr="youtube") Удалить
+    form(method="POST")#delete
+    script(src='/src/js/tables.js')

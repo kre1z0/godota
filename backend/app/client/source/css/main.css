@@ -1,0 +1,57 @@
+main {
+    width: 980px;
+    margin: 50px auto;
+}
+
+.jumbotron {
+    padding: 30px;
+}
+
+.navbar-collapse {
+    width: 980px;
+    margin: 0 auto !important;
+}
+
+.btn-margin {
+    margin-right: 10px;
+}
+
+.btn-add-news {
+    margin-bottom: 20px;
+}
+
+textarea.news-cover {
+    height: 80px;
+    resize: none;
+}
+
+textarea.news-text {
+    height: 200px;
+    resize: vertical;
+}
+
+.caption .news-base {
+    font-size: 14px;
+}
+
+.caption .news-date {
+    font-size: 15px;
+    color: grey;
+}
+
+.table-input {
+    text-align: center;
+}
+
+.table-input:disabled {
+    background: none;
+    border: none;
+}
+
+.js-btn-save {
+    display: none;
+}
+
+.hidden_row {
+    display: none;
+}

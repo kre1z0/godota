@@ -1,0 +1,47 @@
+extends ../layout/app
+
+block title
+    | Twitch
+
+block content
+    h2 Список Twitch-каналов
+    - if (err)
+        - if (err == 500)
+            p.text-danger Ошибка сервера
+        - else if (err == 404) 
+            p.text-danger Канал не найден
+    button.btn.btn-primary.btn-add-news#add_channel Добавить канал
+    table.table.table-stripped.table-bordered.table-hover
+        tr
+            th ID
+            th Nickname
+            th Country
+            th
+            th
+        tr.hidden_row
+            form(action="/twitch/add" method="POST")
+                td 
+                    input(type="text" name="id" required)
+                td  
+                    input(type="text" name="nickname" required)
+                td  
+                    input(type="text" name="country" required)
+                td
+                    button.btn.btn-default Создать
+                td
+        each twitcher in data
+            form(action="/twitch/edit/" + twitcher._id method="POST")
+                tr
+                    td
+                        input(type="text" name="id" value=twitcher.id required disabled).table-input
+                    td
+                        input(type="text" name="nickname" value=twitcher.nickname required disabled).table-input
+                    td
+                        input(type="text" name="country" value=twitcher.country required disabled).table-input
+                    td
+                        button.btn.btn-default.js-btn-change Изменить
+                        button.btn.btn-default.js-btn-save Сохранить
+                    td
+                        button.btn.btn-warning.js-delete(data-num=twitcher._id data-addr="twitch") Удалить
+    form(method="POST")#delete
+    script(src='/src/js/tables.js')
