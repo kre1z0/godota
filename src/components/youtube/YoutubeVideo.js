@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import './youtubeVideo.scss'
-import store from '../store/configureStore'
+import store from '../../store/configureStore'
 import { connect } from 'react-redux'
 import moment from 'moment' // http://momentjs.com/
-import YoutubeVideoNav from '../components/YoutubeNav'
+import YoutubeVideoNav from './YoutubeNav'
 // https://facebook.github.io/react/docs/animation.html
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 

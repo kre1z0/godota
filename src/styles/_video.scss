@@ -1,9 +1,12 @@
-@import "../styles/variables";
+@import "variables";
 
 .video-block {
   position: relative;
+  width: 100%;
+  padding-bottom: 59%;
   background: url("../static/images/twitch.jpg");
   background-size: cover;
+  overflow: hidden;
   .twitch-date {
     position: absolute;
     font-size: 15px;
@@ -14,15 +17,28 @@
     background: $bg-color;
     border-radius: 0 0 5px 0;
   }
+  .twitch_image {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    &.imageIsVisible {
+      opacity: 1;
+    }
+  }
   .video-img {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 0;
+    left: 0;
     z-index: 998;
+    height: 100%;
+    padding: 5px;
   }
   .videoFrame {
     width: 100%;
-    vertical-align: middle;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 5px;
   }
   .img-loading {
     z-index: 999;

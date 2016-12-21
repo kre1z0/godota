@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import store from './store/configureStore'
 import { Provider } from 'react-redux'
-import CoreLayout from './layouts/CoreLayout.js'
-import './styles/main.scss'
-import moment from 'moment'
-moment.locale('ru')
+import store from './store/configureStore'
+import routes from './routes'
+import './styles/core.scss'
 
 ReactDOM.render(
   <Provider store={store} >
-    <CoreLayout />
+    {routes}
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
 

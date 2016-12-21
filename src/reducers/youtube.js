@@ -1,16 +1,15 @@
-const Youtube = (state = {
-  selected: 'selected'
-}, action) => {
+import * as actions from '../actions/youtube'
+
+const initialYoutubeState = {
+
+}
+
+const youtube = (state = initialYoutubeState, action) => {
   switch (action.type) {
-    case 'YOUTUBE_CHANNEL_LIST':
+    case actions.YOUTUBE_CHANNEL_LIST_SUCCESS:
       return {
         ...state,
-        youtubeChannelsList: action.youtubeChannelsList
-      }
-    case 'YOUTUBE_CHANNEL_LIST_ERROR':
-      return {
-        ...state,
-        youtubeChannelsListError: action.youtubeChannelsListError
+        youtubeChannelsList: action.youtubeChannelsList,
       }
     case 'LOAD_YOUTUBE_VIDEO':
       return {
@@ -21,7 +20,12 @@ const Youtube = (state = {
         nextPageToken: action.nextPageToken,
         pid: action.pid,
         vidResults: action.vidResults,
-        video: action.video
+        video: action.video,
+      }
+    case actions.YOUTUBE_VIDEOS_SUCCESS:
+      return {
+        ...state,
+        videos: action.videos,
       }
     case 'LOAD_YOUTUBE_TITLE':
       return {
@@ -32,21 +36,21 @@ const Youtube = (state = {
     case 'LOAD_YOUTUBE_LOGO':
       return {
         ...state,
-        logo: action.logo
+        logo: action.logo,
       }
-    case 'LOAD_YOUTUBE_ACTIVE':
+    case actions.SELECTED_YOUTUBE_CHANNEL:
       return {
         ...state,
-        active: action.active
+        active: action.active,
       }
     case 'YOUTUBE_SORT_ACTIVE':
       return {
         ...state,
-        selected: action.selected
+        selected: action.selected,
       }
     default:
       return state
   }
 }
 
-export default Youtube
+export default youtube

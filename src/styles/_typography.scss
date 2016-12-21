@@ -1,0 +1,71 @@
+html {
+  color: $black;
+  font-size: 1em;
+  line-height: 1.4;
+  background: $white;
+}
+
+::-moz-selection {
+  background: $white;
+  text-shadow: none;
+}
+
+::selection {
+  background: $white;
+  text-shadow: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: $black;
+  line-height: 1.4666;
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: $blue;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 18px;
+  line-height: 1.1;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+h4, h5, h6 {
+  font-size: 14px;
+  line-height: 1.1;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+
+

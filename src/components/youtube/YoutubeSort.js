@@ -1,7 +1,6 @@
 import React from 'react'
-import './youtubeSort.scss'
-import store from '../store/configureStore'
-import { getChannelsVideos } from '../actions/getYoutube'
+import store from '../../store/configureStore'
+import { getChannelsVideos } from '../../actions/getYoutube'
 import moment from 'moment' // http://momentjs.com/
 import { connect } from 'react-redux'
 

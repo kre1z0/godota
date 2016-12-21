@@ -1,38 +1,31 @@
 import React, { Component } from 'react'
-import './chat.scss'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 
-@connect((store) => {
-  return {
-    chat: store.Twitch.chat
+class Chat extends Component {
+  static propTypes = {
+    chat: React.PropTypes.string,
   }
-})
 
-export default class Chat extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       active: false,
       plus: true,
-      minus: false
+      minus: false,
     }
     this.handleClick = ::this.handleClick
   }
 
-  static propTypes = {
-    chat: React.PropTypes.string
-  };
-
-  handleClick () {
+  handleClick() {
     this.setState({
       active: !this.state.active,
       plus: !this.state.plus,
-      minus: !this.state.minus
+      minus: !this.state.minus,
     })
   }
 
-  render () {
+  render() {
     const button = classNames('block-style chat-button', { active: this.state.active })
     const font = classNames('fa', { 'fa-plus-square': this.state.plus, 'fa-minus-square': this.state.minus })
     const block = classNames('chat-block', { active: this.state.active })
@@ -53,3 +46,9 @@ export default class Chat extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({
+    chat: state.Twitch.chat,
+  }),
+)(Chat)

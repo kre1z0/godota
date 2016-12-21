@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import Youtube from './Youtube'
-import Twitch from './Twitch'
+import { routerReducer } from 'react-router-redux'
+import Youtube from './youtube'
+import Twitch from './twitch'
 
 const rootReducer = combineReducers({
   Youtube,
-  Twitch
+  Twitch,
+  routing: routerReducer,
 })
 
 export default rootReducer

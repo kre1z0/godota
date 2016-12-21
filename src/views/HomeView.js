@@ -1,12 +1,12 @@
 import React from 'react'
 import Twitter from '../components/Twitter'
 import Video from '../components/Video'
-import Twitch from '../components/Twitch'
-import Chat from '../components/Chat'
-import YoutubeList from '../components/YoutubeList'
-import YoutubeVideoList from '../components/YoutubeVideo'
+import Twitch from '../components/twitch/Twitch'
+import Chat from '../components/twitch/Chat'
+import YoutubeList from '../components/youtube/YoutubeList'
+import YoutubeVideoList from '../components/youtube/YoutubeVideo'
 import Notes from '../components/Notes'
-import Header from '../components/YoutubeSort'
+import Header from '../components/youtube/YoutubeSort'
 
 const Home = () => (
   <div className='home' >

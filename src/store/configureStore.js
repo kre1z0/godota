@@ -1,17 +1,18 @@
-import rootReducer from '../reducers'
-import { createStore, applyMiddleware } from 'redux'
-import reduxMulti from 'redux-multi'
 import thunk from 'redux-thunk'
-// import createLogger from 'redux-logger'
-// const logger = createLogger()
+import { browserHistory } from 'react-router'
+import { routerMiddleware } from 'react-router-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createLogger from 'redux-logger'
+import rootReducer from '../reducers'
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunk,
-  reduxMulti,
-  // logger
-)
+const reduxRouterMiddleware = routerMiddleware(browserHistory)
 
-const store = createStore(rootReducer, createStoreWithMiddleware)
+const logger = createLogger({
+  level: 'info',
+  collapsed: true,
+})
+const store = createStore(rootReducer, compose(
+  applyMiddleware(thunk, reduxRouterMiddleware, logger),
+))
 
 export default store
-
