@@ -15,6 +15,10 @@
     "url": "git+https://github.com/kreiz0/cybersport.git"
   },
   "author": "Igor Ivchuk <thekreizo@gmail.com> (http://kreizo.me)",
+  "contributors": [{
+    "name": "Vladimir37",
+    "email": "vladimir37work@gmail.com"
+  }],
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
