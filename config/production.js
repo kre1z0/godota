@@ -4,23 +4,24 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+const express = require('express')
 
 const config = {
   entry: [
     'babel-polyfill',
-    './src/app.js'
+    './src/app.js',
   ],
   output: {
     path: path.resolve(path.join(), 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   progress: true,
   resolve: {
     modulesDirectories: [
       'src',
-      'node_modules'
+      'node_modules',
     ],
-    extensions: ['', '.json', '.js', '.jsx']
+    extensions: ['', '.json', '.js', '.jsx'],
   },
   module: {
     loaders: [
@@ -31,63 +32,64 @@ const config = {
         query: {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['transform-decorators-legacy', 'transform-class-properties'],
-          compact: false
-        }
+          compact: false,
+        },
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url!sass-loader')
+        test: /\.(scss|sass)$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url!sass-loader'),
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!resolve-url'),
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       {
         test: /\.woff(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff'
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff',
       },
       {
         test: /\.woff2(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2'
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2',
       },
       {
         test: /\.otf(\?.*)?$/,
-        loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype'
+        loader: 'file?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=font/opentype',
       },
       {
         test: /\.ttf(\?.*)?$/,
-        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream'
+        loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/octet-stream',
       },
       { test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
       { test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
-    ]
+      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' },
+    ],
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   plugins: [
     new ExtractTextPlugin('main.css', {
-      allChunks: true
+      allChunks: true,
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       compress: {
+        pure_funcs: ['console.log'],
         unused: true,
         dead_code: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: '"production"' }
+      'process.env': { NODE_ENV: '"production"' },
     }),
     new webpack.optimize.CommonsChunkPlugin({
       children: true,
-      async: true
+      async: true,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
@@ -96,25 +98,24 @@ const config = {
       filename: './index.html',
       inject: 'body',
       minify: {
-        collapseWhitespace: true
-      }
+        collapseWhitespace: true,
+      },
     }),
     new CopyWebpackPlugin([
-      { from: 'src/static' }
+      { from: 'src/static' },
     ]),
-    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/)
-  ]
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
+  ],
 }
 
 module.exports = config
 
-const express = require('express')
 const app = express()
 const port = 1988
 
 app.use(express.static(path.join() + '/dist'))
 
-app.listen(port, '0.0.0.0',  (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.log(err)
   }

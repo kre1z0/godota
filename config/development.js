@@ -5,24 +5,25 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
 const config = {
-  devtool: 'eval',
   entry: [
-    './src/app.js'
+    'babel-polyfill',
+    './src/app.js',
   ],
-  watch: true,
   output: {
     path: path.resolve(path.join(), 'dist'),
     filename: 'bundle.js',
-    pathinfo: true
+    pathinfo: true,
   },
+  devtool: 'eval',
+  watch: true,
   devServer: {
     contentBase: './dist',
     hot: true,
     inline: true,
     host: '0.0.0.0',
-    port: 2727,
+    port: 4444,
     clientLogLevel: 'info',
-    stats: { colors: true }
+    stats: { colors: true },
   },
   module: {
     loaders: [
@@ -30,20 +31,20 @@ const config = {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         query: {
-          compact: true
-        }
+          compact: true,
+        },
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader'
+        loader: 'style-loader!css-loader!postcss-loader',
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass'
+        test: /\.(scss|sass)$/,
+        loader: 'style-loader!css-loader!postcss-loader!sass',
       },
       {
         test: /\.json$/,
-        loader: 'json-loader'
+        loader: 'json-loader',
       },
       {
         test: /\.woff(\?.*)?$/,
@@ -63,10 +64,10 @@ const config = {
       },
       { test: /\.eot(\?.*)?$/, loader: 'file?prefix=fonts/&name=[path][name].[ext]' },
       { test: /\.svg(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
-      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
-    ]
+      { test: /\.(png|jpg)$/, loader: 'url?limit=8192' },
+    ],
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -75,12 +76,12 @@ const config = {
       hash: false,
       favicon: './src/static/favicon.ico',
       filename: './index.html',
-      inject: 'body'
+      inject: 'body',
     }),
     new CopyWebpackPlugin([
-      { from: 'src/static' }
-    ])
-  ]
+      { from: 'src/static' },
+    ]),
+  ],
 }
 
 module.exports = config
