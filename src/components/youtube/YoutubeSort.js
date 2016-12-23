@@ -37,7 +37,7 @@ class Header extends React.Component {
   }
 
   componentWillMount () {
-    getChannelsVideos(youtubeSortMenu[0].publish)
+    // getChannelsVideos(youtubeSortMenu[0].publish)
   }
 
   handleClick (item) {

@@ -4,7 +4,7 @@ import { getYoutubeChannelsList, getYoutubeVideosFromChannel } from '../../actio
 
 class YoutubeList extends Component {
   static propTypes = {
-    youtubeChannelsList: PropTypes.array,
+    channels_list: PropTypes.array,
     getYoutubeChannelsList: PropTypes.func,
     getYoutubeVideosFromChannel: PropTypes.func,
   }
@@ -25,22 +25,18 @@ class YoutubeList extends Component {
     this.props.getYoutubeVideosFromChannel(item)
   }
   render() {
-    let youtube
-    if (this.props.youtubeChannelsList) {
-      youtube = this.props.youtubeChannelsList.map(item => (
-        <li className={(item.id || item.youtubeId) === this.state.selectedIndex ? 'active' : ''}
-          onClick={() => this.handleClick(item)}
-          title={item.title}
-          key={item.id || item.youtubeId}
-        >
-          {item.name}
-        </li>),
-      )
-    }
     return (
       <div className='youtube-list' >
         <ul>
-          {youtube}
+          {this.props.channels_list.map(item => (
+            <li className={(item.id || item.youtubeId) === this.state.selectedIndex ? 'active' : ''}
+              onClick={() => this.handleClick(item)}
+              title={item.title}
+              key={item.id || item.youtubeId}
+            >
+              {item.name}
+            </li>),
+          )}
         </ul>
       </div>
     )
@@ -49,8 +45,7 @@ class YoutubeList extends Component {
 
 export default connect(
   state => ({
-    youtubeChannelsList: state.Youtube.youtubeChannelsList,
-    youtubeChannelsListError: state.Youtube.youtubeChannelsListError,
+    channels_list: state.Youtube.channels_list,
   }),
   { getYoutubeChannelsList, getYoutubeVideosFromChannel },
 )(YoutubeList)

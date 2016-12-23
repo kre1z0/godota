@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import moment from 'moment'
+import { LOAD_VIDEO } from '../constants/basic'
 
 export const LOAD_TWITCH_REQUEST = 'LOAD_TWITCH_REQUEST'
 export const LOAD_TWITCH_SUCCESS = 'LOAD_TWITCH_SUCCESS'
@@ -7,12 +8,12 @@ export const LOAD_TWITCH_ERROR = 'LOAD_TWITCH_ERROR'
 export const LOAD_TWITCH_IMAGE = 'LOAD_TWITCH_IMAGE'
 export const HIDE_TWITCH_IMAGE = 'HIDE_TWITCH_IMAGE'
 export const TWITCH_IMAGE_LOADER = 'TWITCH_IMAGE_LOADER'
-export const LOAD_TWITCH_STREAM = 'LOAD_TWITCH_STREAM'
+export const LOAD_TWITCH_CHAT = 'LOAD_TWITCH_STREAM'
 export const SELECTED_TWITCH_STREAMER = 'SELECTED_TWITCH_STREAMER'
 
 export function getStreamerList() {
   return (dispatch) => {
-    fetch('./json/twitch.json').then(response => response.json())
+    fetch('./static/json/twitch.json').then(response => response.json())
       .then((twitch) => {
         const all = []
 
@@ -112,9 +113,14 @@ export function loadStreamer(streamer) {
     const urlChat = `https://www.twitch.tv/${channelName}/chat?popout=`
     dispatch(
       {
-        type: LOAD_TWITCH_STREAM,
-        video: urlVideo,
+        type: LOAD_TWITCH_CHAT,
         chat: urlChat,
+      },
+    )
+    dispatch(
+      {
+        type: LOAD_VIDEO,
+        video: urlVideo,
       },
     )
     dispatch(

@@ -1,4 +1,7 @@
 import 'isomorphic-fetch'
+// ➡ https://github.com/fisshy/react-scroll
+import Scroll from 'react-scroll'
+import { LOAD_VIDEO } from '../constants/basic'
 import { apiKey, channelRequest, searchRequest } from '../constants/youtube'
 
 export const YOUTUBE_CHANNEL_LIST_REQUEST = 'YOUTUBE_CHANNEL_LIST_REQUEST'
@@ -10,12 +13,14 @@ export const YOUTUBE_VIDEOS_REQUEST = 'YOUTUBE_VIDEOS_REQUEST'
 export const YOUTUBE_VIDEOS_SUCCESS = 'YOUTUBE_VIDEOS_SUCCESS'
 export const YOUTUBE_VIDEOS_ERROR = 'YOUTUBE_VIDEOS_ERROR'
 
+export const LOAD_YOUTUBE_VIDEOS = 'LOAD_YOUTUBE_VIDEOS'
+
 export const GET_CHANNEL = 'GET_CHANNEL'
 
 export function getYoutubeChannelsList() {
   return (dispatch) => {
     dispatch({ type: YOUTUBE_CHANNEL_LIST_REQUEST })
-    const url = './json/youtube.json'
+    const url = './static/json/youtube.json'
     fetch(url)
       .then(response => response.json())
       .then((data) => {
@@ -28,9 +33,9 @@ export function getYoutubeChannelsList() {
           }
           return 0
         })
-        dispatch({ type: YOUTUBE_CHANNEL_LIST_SUCCESS, youtubeChannelsList: data })
+        dispatch({ type: YOUTUBE_CHANNEL_LIST_SUCCESS, channels_list: data })
       }).catch((error) => {
-        dispatch({ type: YOUTUBE_CHANNEL_LIST_ERROR, youtubeChannelsListError: error })
+        dispatch({ type: YOUTUBE_CHANNEL_LIST_ERROR, error: error })
       })
   }
 }
@@ -98,26 +103,39 @@ function getChannel(url) {
 
 export function getYoutubeVideosFromChannel(channel) {
   return (dispatch) => {
-    // dispatch({ type: YOUTUBE_VIDEOS_REQUEST })
+    dispatch({ type: YOUTUBE_VIDEOS_REQUEST })
     let url
-    if (channel.id) {
+    if (channel.id !== undefined) {
       const byName = `${channelRequest}forUsername=${channel.id}&key=${apiKey}`
       url = byName
     }
-    if (channel.youtubeId) {
+    if (channel.youtubeId !== undefined) {
       const byId = `${channelRequest}id=${channel.youtubeId}&key=${apiKey}`
       url = byId
     }
     fetch(url)
       .then(response => response.json())
-      .then((json) => {
+      .then((channelData) => {
+        console.log('channelData', channelData)
         const maxResults = 15
-        const channelId = json.items[0].id
+        const channelId = channelData.items[0].id
         const searchUrl = `${searchRequest}maxResults=${maxResults}&channelId=${channelId}&order=date&key=${apiKey}`
         fetch(searchUrl)
           .then(response => response.json())
-          .then((data) => {
-            dispatch({ type: YOUTUBE_VIDEOS_SUCCESS, videos: data.items })
+          .then((videos) => {
+            dispatch({
+              type: LOAD_YOUTUBE_VIDEOS,
+              channelId: {
+                id: channel.id,
+                youtubeId: channel.youtubeId,
+              },
+              videos: videos.items,
+              channel_url: videos.items[0].snippet.channelId,
+              logo: channelData.items[0].snippet.thumbnails.default.url,
+              prevPageToken: videos.prevPageToken,
+              nextPageToken: videos.nextPageToken,
+            })
+            console.log('data', videos)
             // for (const item of json.items) {
             //   item.logo = channelLogo
             // }
@@ -125,7 +143,6 @@ export function getYoutubeVideosFromChannel(channel) {
             // const vidResults = 15
             // const items = json.items
             // const next = json.nextPageToken
-            // const title = json.items[0].snippet.channelTitle
             // const channelHref = json.items[0].snippet.channelId
 
             // store.dispatch([
@@ -144,11 +161,22 @@ export function getYoutubeVideosFromChannel(channel) {
             //   },
             // ])
           }).catch((error) => {
-            console.log('parsing failed', error)
+            console.log('parsing failed 2', error)
           })
       }).catch((error) => {
-        console.log('parsing failed', error)
+        console.log('parsing failed 1', error)
       })
   }
 }
 
+export function loadVideo(video) {
+  Scroll.animateScroll.scrollTo(0)
+  return (dispatch) => {
+    const videoId = video.id.videoId
+    const url = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`
+    dispatch({
+      type: LOAD_VIDEO,
+      video: url,
+    })
+  }
+}

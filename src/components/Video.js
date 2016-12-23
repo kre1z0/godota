@@ -26,7 +26,7 @@ class Video extends Component {
 }
 
 export default connect(state => ({
-  video: state.Twitch.video,
+  video: state.Video.video,
 }),
   { twitchImageLoader },
 )(Video)

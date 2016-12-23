@@ -3,7 +3,7 @@ import store from '../store/configureStore'
 import moment from 'moment' // http://momentjs.com/
 
 export function getChannelsVideos (publishDate) {
-  const url = './json/youtube.json'
+  const url = './static/json/youtube.json'
   fetch(url)
     .then(response => response.json())
     .then((json) => {
@@ -21,7 +21,7 @@ export function getChannelsVideos (publishDate) {
           }
           return 0
         })
-        store.dispatch({ type: 'LOAD_YOUTUBE_VIDEO', video: flattened })
+        store.dispatch({ type: 'LOAD_YOUTUBE_VIDEOS', videos: flattened })
       })
     }).catch((error) => {
       console.log('error', error)

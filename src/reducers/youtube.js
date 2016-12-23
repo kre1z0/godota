@@ -1,7 +1,9 @@
 import * as actions from '../actions/youtube'
 
 const initialYoutubeState = {
-
+  videos: [],
+  channel_url: '',
+  channels_list: [],
 }
 
 const youtube = (state = initialYoutubeState, action) => {
@@ -9,23 +11,17 @@ const youtube = (state = initialYoutubeState, action) => {
     case actions.YOUTUBE_CHANNEL_LIST_SUCCESS:
       return {
         ...state,
-        youtubeChannelsList: action.youtubeChannelsList,
+        channels_list: action.channels_list,
+        error: action.error,
       }
-    case 'LOAD_YOUTUBE_VIDEO':
+    case actions.LOAD_YOUTUBE_VIDEOS:
       return {
         ...state,
-        title: action.title,
-        channelHref: action.channelHref,
-        prevPageToken: action.prevPageToken,
-        nextPageToken: action.nextPageToken,
-        pid: action.pid,
-        vidResults: action.vidResults,
-        video: action.video,
-      }
-    case actions.YOUTUBE_VIDEOS_SUCCESS:
-      return {
-        ...state,
+        channelId: action.channelId,
         videos: action.videos,
+        channel_url: action.channel_url,
+        logo: action.logo,
+        nextPageToken: action.nextPageToken,
       }
     case 'LOAD_YOUTUBE_TITLE':
       return {

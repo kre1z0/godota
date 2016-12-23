@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-// https://github.com/cezary/react-loading
+// ➡ https://github.com/cezary/react-loading
 import Loading from 'react-loading'
 import classNames from 'classnames'
 import { connect } from 'react-redux'

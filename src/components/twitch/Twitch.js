@@ -57,7 +57,7 @@ class Twitch extends Component {
           className={(this.state.selectedIndex === item.channel.id) ? selected : ''}
           title={item.channel.status} key={item.channel.id}
         >
-          <img src={`./images/flag_country/${item.channel.country}.png`}
+          <img src={`./static/images/flag_country/${item.channel.country}.png`}
             title={item.channel.country} alt={item.channel.country}
           />
           <span className='streamers__name' >{item.channel.nickname}</span>

@@ -102,7 +102,7 @@ const config = {
       },
     }),
     new CopyWebpackPlugin([
-      { from: 'src/static' },
+      { from: './src/static', to: 'static' },
     ]),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /ru/),
   ],

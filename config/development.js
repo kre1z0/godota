@@ -79,7 +79,7 @@ const config = {
       inject: 'body',
     }),
     new CopyWebpackPlugin([
-      { from: 'src/static' },
+      { from: './src/static', to: 'static' },
     ]),
   ],
 }

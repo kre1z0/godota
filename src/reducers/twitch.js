@@ -1,6 +1,7 @@
 import * as actions from '../actions/twitch'
 
 const initialTwitchState = {
+  twitch: [],
   loader: false,
   imageIsVisible: false,
   image: {
@@ -12,10 +13,9 @@ const initialTwitchState = {
 
 const Twitch = (state = initialTwitchState, action) => {
   switch (action.type) {
-    case actions.LOAD_TWITCH_STREAM:
+    case actions.LOAD_TWITCH_CHAT:
       return {
         ...state,
-        video: action.video,
         chat: action.chat,
       }
     case actions.SELECTED_TWITCH_STREAMER:
