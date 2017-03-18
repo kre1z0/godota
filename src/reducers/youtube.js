@@ -4,6 +4,7 @@ const initialYoutubeState = {
   videos: [],
   channel_url: '',
   channels_list: [],
+  active: false,
 }
 
 const youtube = (state = initialYoutubeState, action) => {
@@ -17,32 +18,21 @@ const youtube = (state = initialYoutubeState, action) => {
     case actions.LOAD_YOUTUBE_VIDEOS:
       return {
         ...state,
-        channelId: action.channelId,
+        id: action.id,
         videos: action.videos,
-        channel_url: action.channel_url,
-        logo: action.logo,
         nextPageToken: action.nextPageToken,
+        prevPageToken: action.prevPageToken,
       }
-    case 'LOAD_YOUTUBE_TITLE':
-      return {
-        ...state,
-        title: action.title,
-        channelHref: action.channelHref,
-      }
-    case 'LOAD_YOUTUBE_LOGO':
+    case actions.LOAD_YOUTUBE_LOGO_INFO:
       return {
         ...state,
         logo: action.logo,
+        channel_url: action.channel_url,
       }
     case actions.SELECTED_YOUTUBE_CHANNEL:
       return {
         ...state,
         active: action.active,
-      }
-    case 'YOUTUBE_SORT_ACTIVE':
-      return {
-        ...state,
-        selected: action.selected,
       }
     default:
       return state

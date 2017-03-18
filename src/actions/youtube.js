@@ -2,7 +2,8 @@ import 'isomorphic-fetch'
 // ➡ https://github.com/fisshy/react-scroll
 import Scroll from 'react-scroll'
 import { LOAD_VIDEO } from '../constants/basic'
-import { apiKey, channelRequest, searchRequest } from '../constants/youtube'
+import { SELECTED_TWITCH_STREAMER } from './twitch'
+import { API_KEY, CHANNEL_REQUEST, SEARCH_REQUEST, NUMBER_OF_VIDEOS } from '../constants/youtube'
 
 export const YOUTUBE_CHANNEL_LIST_REQUEST = 'YOUTUBE_CHANNEL_LIST_REQUEST'
 export const YOUTUBE_CHANNEL_LIST_SUCCESS = 'YOUTUBE_CHANNEL_LIST_SUCCESS'
@@ -14,6 +15,7 @@ export const YOUTUBE_VIDEOS_SUCCESS = 'YOUTUBE_VIDEOS_SUCCESS'
 export const YOUTUBE_VIDEOS_ERROR = 'YOUTUBE_VIDEOS_ERROR'
 
 export const LOAD_YOUTUBE_VIDEOS = 'LOAD_YOUTUBE_VIDEOS'
+export const LOAD_YOUTUBE_LOGO_INFO = 'LOAD_YOUTUBE_LOGO_INFO'
 
 export const GET_CHANNEL = 'GET_CHANNEL'
 
@@ -34,149 +36,88 @@ export function getYoutubeChannelsList() {
           return 0
         })
         dispatch({ type: YOUTUBE_CHANNEL_LIST_SUCCESS, channels_list: data })
-      }).catch((error) => {
-        dispatch({ type: YOUTUBE_CHANNEL_LIST_ERROR, error: error })
+      }).catch((errors) => {
+        dispatch({ type: YOUTUBE_CHANNEL_LIST_ERROR, error: errors })
       })
   }
 }
 
-function getVideos(url) {
-  return dispatch =>
-    fetch(url)
-      .then(response => response.json())
-      .then((data) => {
-        dispatch({ type: YOUTUBE_VIDEOS_SUCCESS, videos: data.items })
-        // for (const item of json.items) {
-        //   item.logo = channelLogo
-        // }
-        // const logo = json.items[0].logo
-        // const vidResults = 15
-        // const items = json.items
-        // const next = json.nextPageToken
-        // const title = json.items[0].snippet.channelTitle
-        // const channelHref = json.items[0].snippet.channelId
-
-        // store.dispatch([
-        //   {
-        //     type: 'LOAD_YOUTUBE_VIDEO',
-        //     nextPageToken: next,
-        //     title: title,
-        //     vidResults: vidResults,
-        //     pid: channelId,
-        //     channelHref: 'https://www.youtube.com/channel/' + channelHref,
-        //     video: items
-        //   },
-        //   {
-        //     type: 'LOAD_YOUTUBE_LOGO',
-        //     logo: logo,
-        //   },
-        // ])
-      }).catch((error) => {
-        console.log('parsing failed', error)
-      })
-}
-
-
-function getVideos(url) {
-  return dispatch =>
-    fetch(url)
-      .then(response => response.json())
-      .then(json => dispatch({ type: YOUTUBE_VIDEOS_SUCCESS, json }),
-        err => dispatch({ type: YOUTUBE_VIDEOS_ERROR, err }),
-      )
-}
-
-function getChannel(url) {
+function returnUrlForChannel(channel) {
+  let url
+  if (channel.id !== undefined) {
+    const byName = `${CHANNEL_REQUEST}forUsername=${channel.id}&key=${API_KEY}`
+    url = byName
+  }
+  if (channel.youtubeId !== undefined) {
+    const byId = `${CHANNEL_REQUEST}id=${channel.youtubeId}&key=${API_KEY}`
+    url = byId
+  }
   return fetch(url)
     .then(response => response.json())
-    .then((json) => {
-      return json
-      // console.log('data', json)
-      // const maxResults = 15
-      // const channelId = json.items[0].id
-      // const searchUrl = `${searchRequest}maxResults=${maxResults}&channelId=${channelId}&order=date&key=${apiKey}`
-      // dispatch({ type: 'getChannel', data: json })
+    .then((channelData) => {
+      console.log('channelData', channelData)
+      const object = {
+        id: channelData.items[0].id,
+        logo: channelData.items[0].snippet.thumbnails.default.url,
+      }
+      return object
     }).catch((error) => {
-      console.log('parsing failed', error)
+      console.log('returnUrlForChannel parsing failed', error)
     })
 }
 
 export function getYoutubeVideosFromChannel(channel) {
   return (dispatch) => {
     dispatch({ type: YOUTUBE_VIDEOS_REQUEST })
-    let url
-    if (channel.id !== undefined) {
-      const byName = `${channelRequest}forUsername=${channel.id}&key=${apiKey}`
-      url = byName
-    }
-    if (channel.youtubeId !== undefined) {
-      const byId = `${channelRequest}id=${channel.youtubeId}&key=${apiKey}`
-      url = byId
-    }
-    fetch(url)
-      .then(response => response.json())
-      .then((channelData) => {
-        console.log('channelData', channelData)
-        const maxResults = 15
-        const channelId = channelData.items[0].id
-        const searchUrl = `${searchRequest}maxResults=${maxResults}&channelId=${channelId}&order=date&key=${apiKey}`
-        fetch(searchUrl)
-          .then(response => response.json())
-          .then((videos) => {
-            dispatch({
-              type: LOAD_YOUTUBE_VIDEOS,
-              channelId: {
-                id: channel.id,
-                youtubeId: channel.youtubeId,
-              },
-              videos: videos.items,
-              channel_url: videos.items[0].snippet.channelId,
-              logo: channelData.items[0].snippet.thumbnails.default.url,
-              prevPageToken: videos.prevPageToken,
-              nextPageToken: videos.nextPageToken,
-            })
-            console.log('data', videos)
-            // for (const item of json.items) {
-            //   item.logo = channelLogo
-            // }
-            // const logo = json.items[0].logo
-            // const vidResults = 15
-            // const items = json.items
-            // const next = json.nextPageToken
-            // const channelHref = json.items[0].snippet.channelId
-
-            // store.dispatch([
-            //   {
-            //     type: 'LOAD_YOUTUBE_VIDEO',
-            //     nextPageToken: next,
-            //     title: title,
-            //     vidResults: vidResults,
-            //     pid: channelId,
-            //     channelHref: 'https://www.youtube.com/channel/' + channelHref,
-            //     video: items
-            //   },
-            //   {
-            //     type: 'LOAD_YOUTUBE_LOGO',
-            //     logo: logo,
-            //   },
-            // ])
-          }).catch((error) => {
-            console.log('parsing failed 2', error)
+    returnUrlForChannel(channel).then((object) => {
+      const channelId = object.id
+      const channelLogo = object.logo
+      const url = `${SEARCH_REQUEST}maxResults=${NUMBER_OF_VIDEOS}&channelId=${channelId}&order=date`
+      fetch(url)
+        .then(response => response.json())
+        .then((videos) => {
+          dispatch({
+            type: LOAD_YOUTUBE_VIDEOS,
+            channelId: {
+              id: channel.id,
+              youtubeId: channel.youtubeId,
+            },
+            id: channelId,
+            videos: videos.items,
+            prevPageToken: videos.prevPageToken,
+            nextPageToken: videos.nextPageToken,
           })
-      }).catch((error) => {
-        console.log('parsing failed 1', error)
-      })
+          dispatch({
+            type: LOAD_YOUTUBE_LOGO_INFO,
+            channel_url: videos.items[0].snippet.channelId,
+            logo: channelLogo,
+          })
+          console.log('data', videos)
+        }).catch((error) => {
+          console.log('parsing failed 2', error)
+        })
+    }).catch((error) => {
+      console.log('Promise all parsing failed', error)
+    })
   }
 }
 
 export function loadVideo(video) {
-  Scroll.animateScroll.scrollTo(0)
+  Scroll.animateScroll.scrollTo(100)
   return (dispatch) => {
     const videoId = video.id.videoId
     const url = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`
     dispatch({
       type: LOAD_VIDEO,
       video: url,
+    })
+    dispatch({
+      type: SELECTED_YOUTUBE_CHANNEL,
+      active: true,
+    })
+    dispatch({
+      type: SELECTED_TWITCH_STREAMER,
+      active: false,
     })
   }
 }

@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import moment from 'moment'
 import { LOAD_VIDEO } from '../constants/basic'
+import { SELECTED_YOUTUBE_CHANNEL } from './youtube'
 
 export const LOAD_TWITCH_REQUEST = 'LOAD_TWITCH_REQUEST'
 export const LOAD_TWITCH_SUCCESS = 'LOAD_TWITCH_SUCCESS'
@@ -127,6 +128,12 @@ export function loadStreamer(streamer) {
       {
         type: SELECTED_TWITCH_STREAMER,
         active: true,
+      },
+    )
+    dispatch(
+      {
+        type: SELECTED_YOUTUBE_CHANNEL,
+        active: false,
       },
     )
   }

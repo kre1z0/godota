@@ -1,35 +1,24 @@
 import 'isomorphic-fetch'
-import store from '../store/configureStore'
+import * as actions from '../actions/youtube'
+import { SEARCH_REQUEST } from '../constants/youtube'
 
-export function getNextVideos (nextPageToken, pid, maxResults) {
-  const url = 'https://www.googleapis.com/youtube/v3/search?' +
-    'maxResults=' + maxResults + '&' +
-    'part=snippet&' +
-    'channelId=' + pid + '&' +
-    'order=date&' +
-    'pageToken=' + nextPageToken + '&' +
-    'key=AIzaSyB857qDfoTXwdCBaIFDqxEUD3j2W_hCMVg'
-  fetch(url).then((response) => {
-    return response.json()
-  }).then((json) => {
-    const items = json.items
-    const next = json.nextPageToken
-    const prev = json.prevPageToken
-    const title = json.items[0].snippet.channelTitle
-    const channelHref = json.items[0].snippet.channelId
-    store.dispatch([
-      {
-        type: 'LOAD_YOUTUBE_VIDEO',
-        nextPageToken: next,
-        prevPageToken: prev,
-        pid: pid,
-        vidResults: maxResults,
-        video: items,
-        channelHref: 'https://www.youtube.com/channel/' + channelHref,
-        title: title
-      }
-    ])
-  }).catch((ex) => {
-    console.log('parsing failed', ex)
-  })
+export function getNextVideos(PageToken, channelId) {
+  return (dispatch) => {
+    const url = `${SEARCH_REQUEST}maxResults=15&channelId=${channelId}&order=date&pageToken=${PageToken}`
+    fetch(url).then(response => response.json())
+      .then((json) => {
+        const items = json.items
+        const next = json.nextPageToken
+        const prev = json.prevPageToken
+        dispatch({
+          type: actions.LOAD_YOUTUBE_VIDEOS,
+          nextPageToken: next,
+          prevPageToken: prev,
+          id: channelId,
+          videos: items,
+        })
+      }).catch((ex) => {
+        console.log('parsing failed', ex)
+      })
+  }
 }

@@ -1,6 +1,6 @@
 import store from '../store/configureStore'
 
-export function getVideoChannel (channelName, channelId) {
+export function getVideoChannel(channelName, channelId) {
   if (channelName) {
     const url = 'https://www.googleapis.com/youtube/v3/channels?' +
       'part=snippet&' +
@@ -16,7 +16,7 @@ export function getVideoChannel (channelName, channelId) {
   }
 }
 
-function getId (url) {
+function getId(url) {
   fetch(url)
     .then(response => response.json())
     .then((json) => {
@@ -24,11 +24,11 @@ function getId (url) {
       const channelId = json.items[0].id
       getVideos(channelId, channelLogo)
     }).catch((ex) => {
-      console.log('parsing failed', ex)
-    })
+    console.log('parsing failed', ex)
+  })
 }
 
-function getVideos (channelId, channelLogo) {
+function getVideos(channelId, channelLogo) {
   const maxResults = 15
   const url = 'https://www.googleapis.com/youtube/v3/search?' +
     'maxResults=' + maxResults + '&' +
@@ -66,6 +66,6 @@ function getVideos (channelId, channelLogo) {
         }
       ])
     }).catch((ex) => {
-      console.log('parsing failed', ex)
-    })
+    console.log('parsing failed', ex)
+  })
 }
