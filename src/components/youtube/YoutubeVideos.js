@@ -58,7 +58,7 @@ class YoutubeVideo extends Component {
       <ReactCSSTransitionGroup
         className='youtube-video-list'
         transitionName='example'
-        transitionEnterTimeout={1300}
+        transitionEnterTimeout={1500}
         transitionLeaveTimeout={1}
       >
         <YoutubeVideoNav />

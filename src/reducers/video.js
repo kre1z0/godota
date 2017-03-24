@@ -1,7 +1,8 @@
-import { LOAD_VIDEO } from '../constants/basic'
+import { LOAD_VIDEO, ACTIVE_VIDEO } from '../constants/basic'
 
 const initialTwitchState = {
   video: '',
+  active: false,
 }
 
 const Video = (state = initialTwitchState, action) => {
@@ -10,6 +11,11 @@ const Video = (state = initialTwitchState, action) => {
       return {
         ...state,
         video: action.video,
+      }
+    case ACTIVE_VIDEO:
+      return {
+        ...state,
+        active: action.active,
       }
     default:
       return state

@@ -49,7 +49,7 @@ class YoutubeVideoNav extends Component {
 
     if (this.props.prevPageToken && this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav'>
+        <div className='item-nav youtube-video-nav'>
           {logo}
           <div className='btn-grp' >
             {prevButton}
@@ -60,7 +60,7 @@ class YoutubeVideoNav extends Component {
     }
     if (this.props.nextPageToken) {
       return (
-        <div className='item youtube-video-nav'>
+        <div className='item-nav youtube-video-nav'>
           {logo}
           <div className='btn-grp' >
             {nextButton}

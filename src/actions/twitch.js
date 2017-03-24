@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import moment from 'moment'
-import { LOAD_VIDEO } from '../constants/basic'
+import { LOAD_VIDEO, ACTIVE_VIDEO } from '../constants/basic'
 import { SELECTED_YOUTUBE_CHANNEL } from './youtube'
 
 export const LOAD_TWITCH_REQUEST = 'LOAD_TWITCH_REQUEST'
@@ -82,6 +82,16 @@ export function loadTwitchImage(item) {
         },
       },
     )
+    dispatch({
+      type: ACTIVE_VIDEO,
+      active: true,
+    })
+    dispatch(
+      {
+        type: SELECTED_TWITCH_STREAMER,
+        selected: true,
+      },
+    )
   }
 }
 
@@ -104,6 +114,10 @@ export function hideTwitchImage(imageIsVisible) {
         imageIsVisible: !imageIsVisible,
       },
     )
+    dispatch({
+      type: ACTIVE_VIDEO,
+      active: false,
+    })
   }
 }
 
@@ -126,8 +140,14 @@ export function loadStreamer(streamer) {
     )
     dispatch(
       {
-        type: SELECTED_TWITCH_STREAMER,
+        type: ACTIVE_VIDEO,
         active: true,
+      },
+    )
+    dispatch(
+      {
+        type: SELECTED_TWITCH_STREAMER,
+        selected: true,
       },
     )
     dispatch(

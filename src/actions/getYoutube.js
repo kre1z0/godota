@@ -1,6 +1,7 @@
 import 'isomorphic-fetch'
 import moment from 'moment' // http://momentjs.com/
 import * as youtube from '../constants/youtube'
+import { YOUTUBE_SORT_ACTIVE, LOAD_YOUTUBE_VIDEOS } from '../actions/youtube'
 
 function filterVideos(videos, publishDate) {
   function filterByPublishDate(obj) {
@@ -74,10 +75,13 @@ export function getChannelsVideos(publishDate) {
             return 0
           })
           dispatch({
-            type: 'YOUTUBE_SORT_ACTIVE',
-            selected: 'selected',
+            type: YOUTUBE_SORT_ACTIVE,
+            selected: true,
           })
-          dispatch({ type: 'LOAD_YOUTUBE_VIDEOS', videos: flattened })
+          dispatch({
+            type: LOAD_YOUTUBE_VIDEOS,
+            videos: flattened,
+          })
         })
       }).catch((error) => {
         console.log('error', error)

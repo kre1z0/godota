@@ -7,6 +7,10 @@
   background: url("../static/images/twitch.jpg");
   background-size: cover;
   overflow: hidden;
+  display: none;
+  &.active {
+    display: block;
+  }
   .twitch-date {
     position: absolute;
     font-size: 15px;

@@ -1,7 +1,7 @@
 import 'isomorphic-fetch'
 // ➡ https://github.com/fisshy/react-scroll
 import Scroll from 'react-scroll'
-import { LOAD_VIDEO } from '../constants/basic'
+import { LOAD_VIDEO, ACTIVE_VIDEO } from '../constants/basic'
 import { SELECTED_TWITCH_STREAMER } from './twitch'
 import { API_KEY, CHANNEL_REQUEST, SEARCH_REQUEST, NUMBER_OF_VIDEOS } from '../constants/youtube'
 
@@ -16,6 +16,7 @@ export const YOUTUBE_VIDEOS_ERROR = 'YOUTUBE_VIDEOS_ERROR'
 
 export const LOAD_YOUTUBE_VIDEOS = 'LOAD_YOUTUBE_VIDEOS'
 export const LOAD_YOUTUBE_LOGO_INFO = 'LOAD_YOUTUBE_LOGO_INFO'
+export const YOUTUBE_SORT_ACTIVE = 'YOUTUBE_SORT_ACTIVE'
 
 export const GET_CHANNEL = 'GET_CHANNEL'
 
@@ -92,7 +93,10 @@ export function getYoutubeVideosFromChannel(channel) {
             channel_url: videos.items[0].snippet.channelId,
             logo: channelLogo,
           })
-          console.log('data', videos)
+          dispatch({
+            type: YOUTUBE_SORT_ACTIVE,
+            selected: false,
+          })
         }).catch((error) => {
           console.log('parsing failed 2', error)
         })
@@ -112,12 +116,16 @@ export function loadVideo(video) {
       video: url,
     })
     dispatch({
+      type: ACTIVE_VIDEO,
+      active: true,
+    })
+    dispatch({
       type: SELECTED_YOUTUBE_CHANNEL,
       active: true,
     })
     dispatch({
       type: SELECTED_TWITCH_STREAMER,
-      active: false,
+      selected: false,
     })
   }
 }

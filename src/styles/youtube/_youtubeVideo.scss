@@ -2,6 +2,7 @@
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  margin-right: -5px;
   .item {
     width: calc(25% - 5px);
     margin-right: 5px;
@@ -57,7 +58,7 @@
     }
     .active {
       .block-style {
-        border: 2px solid $hover-text-color;
+        border: 1px solid $hover-text-color;
         cursor: default;
       }
       .youtube-title {
@@ -77,7 +78,7 @@
 
 .example-enter.example-enter-active {
   opacity: 1;
-  transition: opacity 1300ms ease-in;
+  transition: opacity 1500ms ease-in;
 }
 
 .example-leave {

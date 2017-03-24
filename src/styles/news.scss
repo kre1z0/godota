@@ -1,0 +1,52 @@
+.news {
+  .news-item {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    .news-image {
+      width: 30%;
+      display: flex;
+      align-items: center;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .news-content {
+      position: relative;
+      width: 70%;
+      border-left: 2px solid $border-color;
+      padding-left: 15px;
+      margin-left: 15px;
+      .news-title {
+        position: relative;
+        font-size: 17px;
+        line-height: normal;
+        margin: 0;
+      }
+      .news-info {
+        color: $text-color-gray;
+        font-size: 13px;
+        .fa.fa-pencil-square-o {
+          position: relative;
+          top: 1px;
+        }
+      }
+      .news-date {
+        font-size: 13px;
+        color: $text-color-gray;
+      }
+      .news-info {
+        float: right;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      p {
+        margin: 10px 0;
+        font-size: 14px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

@@ -16,7 +16,11 @@ class Header extends Component {
   render() {
     return (
       <header className='header' >
-        <h1>Header</h1>
+        <ul>
+          <li><a>test 1</a> </li>
+          <li><a>test 2</a></li>
+          <li><a>test 3</a></li>
+        </ul>
       </header>
     )
   }

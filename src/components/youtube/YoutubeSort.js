@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment' // http://momentjs.com/
+import classNames from 'classnames'
 import { getChannelsVideos } from '../../actions/getYoutube'
 
 class Header extends React.Component {
   static propTypes = {
-    selected: React.PropTypes.string,
+    selected: React.PropTypes.bool,
     getChannelsVideos: React.PropTypes.func,
   }
   constructor(props) {
@@ -41,15 +42,18 @@ class Header extends React.Component {
   }
 
   render() {
+    console.log('this.props.selected', this.props.selected)
     return (
       <div className='youtube-sort' >
         <div className='logo' />
         <ul>
           {
             this.state.youtubeSortMenu.map((item) => {
+              const active = classNames({ active:
+              (this.state.selectedIndex === item.name) && this.props.selected === true })
               return (
                 <li key={item.name}
-                  className={(this.state.selectedIndex === item.name) ? this.props.selected : ''}
+                  className={active}
                   onClick={() => this.handleClick(item)}
                 >
                   {item.name}

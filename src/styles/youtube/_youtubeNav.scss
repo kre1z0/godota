@@ -9,8 +9,12 @@
   img.youtube-channel-logo {
     width: 88px;
     height: 88px;
+    vertical-align: middle;
   }
-  &.item {
+  &.item-nav {
+    width: calc(25% - 5px);
+    margin-right: 5px;
+    margin-bottom: 5px;
     a.title_youtube_channel {
       font-size: 16px;
       color: #707070;
@@ -18,16 +22,10 @@
       margin: 0 auto;
       z-index: 999;
       &:hover {
-        color: $hover-text-color;
-        background: $hover-bg;
-        cursor: pointer;
+        border: 1px solid $hover-text-color;
       }
     }
-    &:hover {
-      .block-style {
-        border: 1px solid $border-color;
-      }
-    }
+
   }
 
   .title_youtube_video {

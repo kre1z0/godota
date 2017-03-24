@@ -27,12 +27,12 @@
 body {
   color: $text-color;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: url("../static/images/background.jpg");
 }
 
 .container {
-  min-width: 1365px;
-  padding: 0 10px;
+  min-width: 1024px;
+  padding: 10px;
+  background: url("../static/images/background.jpg");
 }
 
 .block-style {

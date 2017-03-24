@@ -21,7 +21,7 @@ const Twitch = (state = initialTwitchState, action) => {
     case actions.SELECTED_TWITCH_STREAMER:
       return {
         ...state,
-        active: action.active,
+        selected: action.selected,
       }
     case actions.LOAD_TWITCH_SUCCESS:
       return {
