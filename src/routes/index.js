@@ -1,17 +1,16 @@
 import React from 'react'
-import { Router, browserHistory, Route, IndexRoute } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import store from '../store/configureStore'
+import { Route } from 'react-router'
 
 import App from '../containers/App'
 import Home from '../views/HomeView'
+import News from '../views/NewsView'
 
-const history = syncHistoryWithStore(browserHistory, store)
-
-export default (
-  <Router history={history} >
-    <Route path='/' component={App} >
-      <IndexRoute component={Home} />
+export default(store) => {
+  console.log('STORE <==', store)
+  return (
+    <Route component={App} >
+      <Route path='/' component={Home} />
+      <Route path='/news/' component={News} />
     </Route>
-  </Router>
-)
+  )
+}

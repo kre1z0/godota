@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import Home from '../views/HomeView'
-import Header from '../components/Header'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import Header from '../components/Header'
 
 class App extends Component {
   static propTypes = {
@@ -19,9 +18,9 @@ class App extends Component {
   }
   render() {
     return (
-      <div className='container'>
+      <div className='wrapper'>
         <Header />
-        <Home />
+        {this.props.children}
       </div>
     )
   }
@@ -29,7 +28,6 @@ class App extends Component {
 
 export default connect(
   state => ({
-    twitch: state.Twitch.twitch,
   }),
   { },
 )(App)

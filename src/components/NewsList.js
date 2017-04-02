@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import NEWS from '../static/json/news.json'
+import { getNews } from '../actions/news'
 
-class News extends Component {
+class NewsList extends Component {
   static propTypes = {
-    twitch: PropTypes.array,
+    getNews: PropTypes.func,
   }
 
   constructor(props) {
@@ -20,11 +22,13 @@ class News extends Component {
 
   render() {
     return (
-      <div className='news' >
+      <div className='news-list-wrapper' >
         {this.state.news.map((item) => {
           return (
-            <div key={item.id}
+            <Link to={`/news/${item.id}`}
               className='news-item block-style clearfix'
+              onClick={() => this.props.getNews(item.id)}
+              key={item.id}
             >
               <div className='news-image' >
                 <img src={item.image}
@@ -46,9 +50,8 @@ class News extends Component {
                   <span>&nbsp;{item.views}</span>
                 </div>
               </div>
-            </div>
+            </Link>
           )
-
         })}
       </div>
     )
@@ -56,8 +59,6 @@ class News extends Component {
 }
 
 export default connect(
-  state => ({
-    twitch: state.Twitch.twitch,
-  }),
-  {},
-)(News)
+  state => ({}),
+  { getNews },
+)(NewsList)

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Link, IndexLink } from 'react-router'
 import { connect } from 'react-redux'
 
 class Header extends Component {
@@ -17,9 +18,16 @@ class Header extends Component {
     return (
       <header className='header' >
         <ul>
-          <li><a>test 1</a> </li>
-          <li><a>test 2</a></li>
-          <li><a>test 3</a></li>
+          <li>
+            <IndexLink to='/'>
+              Godota
+            </IndexLink>
+          </li>
+          <li>
+            <Link to='/news/' activeClassName='active'>
+              News
+            </Link>
+          </li>
         </ul>
       </header>
     )

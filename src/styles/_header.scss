@@ -2,6 +2,7 @@
   margin-bottom: 10px;
   background-color: $bg-color;
   border: 1px solid $border-color;
+  border-radius: 5px;
   ul {
     margin: 0;
     padding: 0;
@@ -9,15 +10,33 @@
     li {
       display: inline-block;
       a {
+        font-size: 17px;
         font-weight: bold;
         display: block;
         border-right: 1px solid $border-color;
         padding: 5px 10px;
-        color: #fff;
+        color: $text-color;
         text-decoration: none;
         cursor: pointer;
+        transition: all 0.4s ease;
         &:hover {
           background: darken($hover-bg, 44%);
+        }
+        &.active {
+          background: darken($hover-bg, 44%);
+        }
+      }
+      &:first-child {
+        a {
+          border-radius: 5px 0 0 5px;
+          &:hover {
+            background: none;
+          }
+        }
+      }
+      &:last-child {
+        a {
+          border-radius: 0 5px 5px 0;
         }
       }
     }
